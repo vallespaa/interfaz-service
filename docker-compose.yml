@@ -1,0 +1,44 @@
+services:
+  redis-mock:
+    image: redis:alpine
+    container_name: redis_pruebas
+    ports:
+      - "6379:6379"
+    networks:
+      - fleet-network
+
+  conductor-mock:                          # ← NUEVO
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.mock
+    ports:
+      - "8081:8081"
+    networks:
+      - fleet-network
+
+  backend:
+    build: ./backend
+    depends_on:
+      - redis-mock
+      - conductor-mock  
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8080:8080"
+    networks:
+      - fleet-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:8080
+    networks:
+      - fleet-network
+    depends_on:
+      - backend
+
+networks:
+  fleet-network:
+    driver: bridge
