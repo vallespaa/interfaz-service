@@ -1,0 +1,8 @@
+{
+  "/vehiculos": [
+    { "idVehiculo": "veh-5501", "idConductor": "cond-2022", "matricula": "1234-XYZ", "latitud": 40.4167, "longitud": -3.7032, "velocidad": 50.5, "nivelBateriaActual": 45.2, "capacidadBateriaMaxima": 60.0, "estado": "EN_USO"},
+    { "idVehiculo": "veh-5551", "idConductor": "cond-5551", "matricula": "1234-XYZ", "latitud": 40.3455, "longitud": -1.1042, "velocidad": 50.5, "nivelBateriaActual": 85.0, "capacidadBateriaMaxima": 120.0, "estado": "EN_USO" },
+    { "idVehiculo": "veh-0425", "idConductor": "cond-0425", "matricula": "1234-XYZ", "latitud": 40.3523, "longitud": -1.1615, "velocidad": 50.5, "nivelBateriaActual": 12.0, "capacidadBateriaMaxima": 120.0, "estado": "EN_USO" },
+    { "idVehiculo": "veh-0994", "idConductor": "cond-0994", "matricula": "1234-XYZ", "latitud": 40.3441, "longitud": -1.0898, "velocidad": 50.5, "nivelBateriaActual": 10.0, "capacidadBateriaMaxima": 120.0, "estado": "EN_USO" }
+  ]
+}

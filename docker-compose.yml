@@ -7,7 +7,7 @@ services:
     networks:
       - fleet-network
 
-  conductor-mock:                          # ← NUEVO
+  conductor-mock:
     build:
       context: ./backend
       dockerfile: Dockerfile.mock
