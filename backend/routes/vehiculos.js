@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { vehiculosAdapter } = require('../gateway/index.js');
 
-// GET /api/vehiculos          — todos los vehículos
+// GET /api/vehiculos          — Lista de vehículos
 
 router.get('/', async (req, res, next) => {
   try {

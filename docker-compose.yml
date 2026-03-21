@@ -7,20 +7,10 @@ services:
     networks:
       - fleet-network
 
-  conductor-mock:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile.mock
-    ports:
-      - "8081:8081"
-    networks:
-      - fleet-network
-
   backend:
     build: ./backend
     depends_on:
       - redis-mock
-      - conductor-mock  
     env_file:
       - ./backend/.env
     ports:

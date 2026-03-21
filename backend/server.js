@@ -9,8 +9,8 @@ const { iniciarSuscripciones } = require('./services/redisSubscriber');
 const { estadoSistema, iniciarSimulacion } = require('./mockData');
 
 // RUTAS
-//const authRoutes = require('./routes/auth');
-const vehiculosRoutes = require('./routes/vehiculos.js');
+const conductoresRoutes = require('./routes/conductores');
+const vehiculosRoutes = require('./routes/vehiculos');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -24,6 +24,7 @@ app.use(cors({
 app.use(express.json());
 
 // REGISTRO RUTAS API
+app.use('/api/conductores', conductoresRoutes);
 app.use('/api/vehiculos', vehiculosRoutes);
 
 app.get('/api/iu/estado', (req, res) => {
