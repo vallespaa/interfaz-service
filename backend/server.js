@@ -11,6 +11,14 @@ const { estadoSistema, iniciarSimulacion } = require('./mockData');
 // RUTAS
 const conductoresRoutes = require('./routes/conductores');
 const vehiculosRoutes = require('./routes/vehiculos');
+const zonasRoutes = require('./routes/zonas');
+const postesRoutes = require('./routes/postes');
+const reservasRoutes = require('./routes/reservas');
+const cargasRoutes = require('./routes/cargas');
+const historicoRoutes = require('./routes/historico');
+const notificacionesRoutes = require('./routes/notificaciones');
+const cuentasRoutes = require('./routes/cuentas');
+const logVehiculosRoutes = require('./routes/logVehiculos');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -26,6 +34,14 @@ app.use(express.json());
 // REGISTRO RUTAS API
 app.use('/api/conductores', conductoresRoutes);
 app.use('/api/vehiculos', vehiculosRoutes);
+app.use('/api/zonas', zonasRoutes);
+app.use('/api/postes', postesRoutes);
+app.use('/api/reservas', reservasRoutes);
+app.use('/api/cargas', cargasRoutes);
+app.use('/api/historico', historicoRoutes);
+app.use('/api/notificaciones', notificacionesRoutes);
+app.use('/api/cuentas', cuentasRoutes);
+app.use('/api/log-vehiculos', logVehiculosRoutes);
 
 app.get('/api/iu/estado', (req, res) => {
   console.log("Petición de estado recibida");

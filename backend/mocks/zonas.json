@@ -1,0 +1,91 @@
+{
+  "/api/zonas": [
+    {
+      "idZona": "Z-ZGZ-01",
+      "nombre": "Estación Delicias",
+      "coordenadas": { "lat": 41.6488, "lng": -0.9101 },
+      "postesLibres": 3,
+      "capacidadTotal": 5,
+      "precioPorKWh": 0.32,
+      "tipoTarifa": "ESTANDAR",
+      "estado": "HABILITADA"
+    },
+    {
+      "idZona": "Z-ZGZ-02",
+      "nombre": "Plaza del Pilar",
+      "coordenadas": { "lat": 41.6561, "lng": -0.8773 },
+      "postesLibres": 1,
+      "capacidadTotal": 4,
+      "precioPorKWh": 0.45,
+      "tipoTarifa": "PREMIUM",
+      "estado": "HABILITADA"
+    },
+    {
+      "idZona": "Z-ZGZ-03",
+      "nombre": "Parque Goya",
+      "coordenadas": { "lat": 41.6701, "lng": -0.8520 },
+      "postesLibres": 0,
+      "capacidadTotal": 3,
+      "precioPorKWh": 0.29,
+      "tipoTarifa": "ESTANDAR",
+      "estado": "HABILITADA"
+    }
+  ],
+  "/api/zonas/cercanas": [
+    {
+      "idZona": "Z-ZGZ-01",
+      "nombre": "Estación Delicias",
+      "coordenadas": { "lat": 41.6488, "lng": -0.9101 },
+      "postesLibres": 3,
+      "capacidadTotal": 5,
+      "precioPorKWh": 0.32,
+      "tipoTarifa": "ESTANDAR",
+      "distanciaKm": 0.4,
+      "tiempoEstimadoMinutos": 2,
+      "estado": "HABILITADA"
+    },
+    {
+      "idZona": "Z-ZGZ-02",
+      "nombre": "Plaza del Pilar",
+      "coordenadas": { "lat": 41.6561, "lng": -0.8773 },
+      "postesLibres": 1,
+      "capacidadTotal": 4,
+      "precioPorKWh": 0.45,
+      "tipoTarifa": "PREMIUM",
+      "distanciaKm": 1.2,
+      "tiempoEstimadoMinutos": 5,
+      "estado": "HABILITADA"
+    }
+  ],
+  "/api/zonas/Z-ZGZ-01": {
+    "idZona": "Z-ZGZ-01",
+    "nombre": "Estación Delicias",
+    "coordenadas": { "lat": 41.6488, "lng": -0.9101 },
+    "postesLibres": 3,
+    "capacidadTotal": 5,
+    "idsPostes": ["P-01", "P-02", "P-03", "P-04", "P-05"],
+    "precioPorKWh": 0.32,
+    "tipoTarifa": "ESTANDAR",
+    "estado": "HABILITADA",
+    "porcentajeOcupacion": 40,
+    "fechaUltimaModificacion": "2026-03-01T10:00:00Z"
+  },
+  "POST:/api/reservas": {
+    "idReserva": "RES-mock-0001",
+    "idZona": "Z-ZGZ-01",
+    "idPoste": "P-03",
+    "idVehiculo": "veh-5501",
+    "idUsuario": "cond-2022",
+    "estado": "PENDIENTE",
+    "fechaCreacion": "2026-03-22T10:00:00Z",
+    "fechaExpiracion": "2026-03-22T10:15:00Z",
+    "precioPorKWh": 0.32,
+    "tipoTarifa": "ESTANDAR",
+    "notificacionPreventivaEnviada": false
+  },
+  "DELETE:/api/reservas/RES-mock-0001": {
+    "mensaje": "Reserva cancelada correctamente",
+    "idReserva": "RES-mock-0001",
+    "estado": "CANCELADA"
+  }
+}

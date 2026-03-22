@@ -1,0 +1,64 @@
+{
+  "/api/historico": [
+    {
+      "idRegistro": "hist-001",
+      "idCliente": "cond-2022",
+      "idVehiculo": "veh-5501",
+      "idPoste": "P-01",
+      "fechaInicio": "2026-03-20T10:00:00Z",
+      "fechaFin": "2026-03-20T10:45:00Z",
+      "importeCargo": 7.20,
+      "estado": "ARCHIVADO",
+      "duracionMinutos": 45,
+      "metadatos": {
+        "energiaEntregadaKw": 22.5,
+        "tarifaAplicada": "ESTANDAR"
+      }
+    },
+    {
+      "idRegistro": "hist-002",
+      "idCliente": "cond-2022",
+      "idVehiculo": "veh-5501",
+      "idPoste": "P-06",
+      "fechaInicio": "2026-03-19T18:00:00Z",
+      "fechaFin": "2026-03-19T19:10:00Z",
+      "importeCargo": 19.80,
+      "estado": "ARCHIVADO",
+      "duracionMinutos": 70,
+      "metadatos": {
+        "energiaEntregadaKw": 44.0,
+        "tarifaAplicada": "PREMIUM"
+      }
+    }
+  ],
+  "/api/historico/hist-001": {
+    "idRegistro": "hist-001",
+    "idCliente": "cond-2022",
+    "idVehiculo": "veh-5501",
+    "idPoste": "P-01",
+    "fechaInicio": "2026-03-20T10:00:00Z",
+    "fechaFin": "2026-03-20T10:45:00Z",
+    "importeCargo": 7.20,
+    "estado": "ARCHIVADO",
+    "duracionMinutos": 45,
+    "metadatos": {
+      "energiaEntregadaKw": 22.5,
+      "tarifaAplicada": "ESTANDAR"
+    }
+  },
+  "/api/historico/hist-002": {
+    "idRegistro": "hist-002",
+    "idCliente": "cond-2022",
+    "idVehiculo": "veh-5501",
+    "idPoste": "P-06",
+    "fechaInicio": "2026-03-19T18:00:00Z",
+    "fechaFin": "2026-03-19T19:10:00Z",
+    "importeCargo": 19.80,
+    "estado": "ARCHIVADO",
+    "duracionMinutos": 70,
+    "metadatos": {
+      "energiaEntregadaKw": 44.0,
+      "tarifaAplicada": "PREMIUM"
+    }
+  }
+}

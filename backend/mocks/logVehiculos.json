@@ -1,0 +1,32 @@
+{
+  "/api/log-vehiculos/veh-5501": [
+    {
+      "id": "log-001",
+      "idVehiculo": "veh-5501",
+      "tipo": "INICIO_CARGA",
+      "timestamp": "2026-03-22T09:00:00Z",
+      "datos": { "idPoste": "P-01", "socInicial": 35.0 }
+    },
+    {
+      "id": "log-002",
+      "idVehiculo": "veh-5501",
+      "tipo": "CAMBIO_VELOCIDAD",
+      "timestamp": "2026-03-22T08:45:00Z",
+      "datos": { "velocidadAnterior": 0.0, "velocidadNueva": 50.0 }
+    },
+    {
+      "id": "log-003",
+      "idVehiculo": "veh-5501",
+      "tipo": "CAMBIO_RUMBO",
+      "timestamp": "2026-03-22T08:40:00Z",
+      "datos": { "rumboAnterior": 90.0, "rumboNuevo": 180.0 }
+    },
+    {
+      "id": "log-004",
+      "idVehiculo": "veh-5501",
+      "tipo": "PARADA_CARGA",
+      "timestamp": "2026-03-20T10:45:00Z",
+      "datos": { "idPoste": "P-01", "socFinal": 85.0, "kwhEntregados": 22.5 }
+    }
+  ]
+}

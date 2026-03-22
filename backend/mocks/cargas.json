@@ -1,0 +1,42 @@
+{
+  "/api/cargas": [
+    {
+      "id": "carga-mock-001",
+      "idPoste": "P-02",
+      "idVehiculo": "veh-5502",
+      "idConductor": "cond-2022",
+      "estado": "EN_CURSO",
+      "fechaInicio": "2026-03-22T09:00:00Z",
+      "kwhEntregados": 12.4,
+      "potenciaActual": 50.0,
+      "costeAcumulado": 3.97
+    }
+  ],
+  "/api/cargas/carga-mock-001": {
+    "id": "carga-mock-001",
+    "idPoste": "P-02",
+    "idVehiculo": "veh-5502",
+    "idConductor": "cond-2022",
+    "estado": "EN_CURSO",
+    "fechaInicio": "2026-03-22T09:00:00Z",
+    "kwhEntregados": 12.4,
+    "potenciaActual": 50.0,
+    "costeAcumulado": 3.97
+  },
+  "POST:/api/cargas": {
+    "id": "carga-mock-002",
+    "idPoste": "P-03",
+    "idVehiculo": "veh-5501",
+    "idConductor": "cond-2022",
+    "estado": "EN_CURSO",
+    "fechaInicio": "2026-03-22T10:00:00Z",
+    "kwhEntregados": 0.0,
+    "potenciaActual": 22.0,
+    "costeAcumulado": 0.0
+  },
+  "DELETE:/api/cargas/carga-mock-002": {
+    "mensaje": "Carga finalizada correctamente",
+    "id": "carga-mock-002",
+    "estado": "FINALIZADA"
+  }
+}

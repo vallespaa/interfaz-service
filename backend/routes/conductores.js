@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { conductorAdapter } = require('../gateway/index.js');
 
-// POST /api/conductores       - Registro
-// POST /api/conductores/login - Login
+// POST /api/conductores          — Registro
+// POST /api/conductores/login    — Login
+// GET  /api/conductores/validate — Validar token
 
 router.post('/', async (req, res, next) => {
   try {
@@ -32,5 +33,20 @@ router.post('/login', async (req, res, next) => {
     next(err); 
   }
 });
+
+router.get('/validate', async (req, res, next) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ error: 'Token no proporcionado' });
+    }
+ 
+    const data = await conductorAdapter.get('/api/conductores/validate', {}, token);
+    res.json(data);
+  } catch (err) {
+    next(err);
+  }
+});
+
 
 module.exports = router;

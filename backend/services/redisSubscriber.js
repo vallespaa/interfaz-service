@@ -18,7 +18,6 @@ const iniciarSuscripciones = async (subClient) => {
           payload: data
         });
         
-        console.log(paquete);
         broadcast(paquete);
       } catch (e) {
         console.error('Error parseando JSON de Redis:', e);

@@ -1,0 +1,33 @@
+{
+  "/api/cuentas/conductor/cond-2022": {
+    "idCuenta": "acc-2023-55",
+    "idConductor": "cond-2022",
+    "iban": "****5678",
+    "saldoPendiente": 27.00,
+    "moneda": "EUR",
+    "fechaCreacion": "2026-01-15T09:00:00Z"
+  },
+  "/api/cuentas/acc-2023-55/movimientos": [
+    {
+      "idCargo": "cargo-001",
+      "importe": 7.20,
+      "fecha": "2026-03-20T10:45:00Z",
+      "estado": "PENDIENTE",
+      "concepto": "Carga Estación Delicias - Poste P-01"
+    },
+    {
+      "idCargo": "cargo-002",
+      "importe": 19.80,
+      "fecha": "2026-03-19T19:10:00Z",
+      "estado": "PENDIENTE",
+      "concepto": "Carga Plaza del Pilar - Poste P-06"
+    },
+    {
+      "idCargo": "cargo-003",
+      "importe": 5.50,
+      "fecha": "2026-03-10T14:30:00Z",
+      "estado": "COBRADO",
+      "concepto": "Carga Parque Goya - Poste P-09"
+    }
+  ]
+}
