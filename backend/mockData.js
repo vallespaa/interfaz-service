@@ -6,7 +6,7 @@ let estadoSistema = {
       { "idVehiculo": "veh-0994", "idConductor": "cond-0994", "matricula": "1234-XYZ", "latitud": 40.3441, "longitud": -1.0898, "velocidad": 50.5, "nivelBateriaActual": 10.0, "capacidadBateriaMaxima": 120.0, "estado": "EN_USO" }
     ],
     listaPostes: [
-      { "idZona": "Z-Madrid-01", "postesLibres": 5, "estado": "DISPONIBLE" }
+      { "idZona": "Z-ZGZ-01", "postesLibres": 5, "estado": "DISPONIBLE" }
     ],
     notificacionesActivas: []
 };
@@ -44,9 +44,17 @@ const iniciarSimulacion = (redisPublisher) => {
         const zonaUpdate = {
           type: "ZONA_UPDATE",
           payload: {
-            idZona: "Z-Madrid-01",
-            postesLibres: Math.floor(Math.random() * 6),
-            estado: "DISPONIBLE"
+            idZona: "Z-ZGZ-01",
+            nombre: "Estación Delicias",
+            coordenadas: {
+              lat: 41.6488,
+              lng: -0.9101
+            },
+            postesLibres: Math.floor(Math.random() * 5),
+            capacidadTotal: 5,
+            precioPorKWh: 0.32,
+            tipoTarifa: "ESTANDAR",
+            estado: "HABILITADA"
           }
         };
         await redisPublisher.publish(process.env.CANAL_POSTES || 'zonas.eventos', JSON.stringify(zonaUpdate));
@@ -57,12 +65,13 @@ const iniciarSimulacion = (redisPublisher) => {
     setInterval(async () => {
       if (redisPublisher && redisPublisher.isOpen) {
         const alerta = {
-          idAlerta: "uuid-" + Math.random().toString(16).slice(2),
-          tipo: "VEHICULO_SIN_BATERIA",
-          severidad: "CRITICAL",
-          idEntidad: "veh-0425",
-          fecha: new Date().toISOString(),
-          mensaje: "El vehículo veh-0425 tiene menos del 10% de batería"
+          idNotificacion: "9c2b0f7a-" + Math.random().toString(16).slice(2),
+          idAlerta: "a1f3c2b4-" + Math.random().toString(16).slice(2),
+          idConductor: "cond-2022",
+          estado: "ABIERTA",
+          mensaje: "La reserva del poste P-04 está a punto de expirar (2 minutos).",
+          fechaCreacion: new Date().toISOString(),
+          fechaActualizacion: "2026-03-22T09:58:00Z"
         };
         await redisPublisher.publish(process.env.CANAL_NOTIFICACIONES || 'alerta.creada', JSON.stringify(alerta));
       }
