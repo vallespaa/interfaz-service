@@ -4,5 +4,4 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 5173
-# Importante: host 0.0.0.0 para que sea accesible desde fuera del contenedor
 CMD ["npm", "start"]

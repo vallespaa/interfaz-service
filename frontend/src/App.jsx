@@ -11,11 +11,11 @@ const TOKEN = null; // null mientras usamos mocks sin autenticación real
 
 function App() {
   const [vehiculos, setVehiculos] = useState([]);
-  const [zonas,     setZonas]     = useState([]);
-  const [alertas,   setAlertas]   = useState([]);
-  const [cargas,    setCargas]    = useState([]);
-  const [loading,   setLoading]   = useState(true);
-  const [error,     setError]     = useState(null);
+  const [zonas, setZonas] = useState([]);
+  const [alertas, setAlertas] = useState([]);
+  const [cargas, setCargas] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [connected, setConnected] = useState(false);
   const socketRef = useRef(null);
 
@@ -45,7 +45,7 @@ function App() {
 
   // Actualizaciones en tiempo real a través de Web Socket
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:8080"); // Cambiar cuando suba a la maquina virtual
+    const socket = new WebSocket(`ws://${window.location.hostname}}:8080`);
 
     socket.onopen = () => {
       setConnected(true);

@@ -4,11 +4,13 @@ const cors = require('cors');
 const { createServer } = require('http'); 
 
 const { subClient, pubClient } = require('./config/redis');
+const conectarDB = require('./config/db');
 const { iniciarWebSocket } = require('./services/websocket');
 const { iniciarSuscripciones } = require('./services/redisSubscriber');
 const { estadoSistema, iniciarSimulacion } = require('./mockData');
 
 // RUTAS
+const favoritosRoutes = require('./routes/favoritos');
 const conductoresRoutes = require('./routes/conductores');
 const vehiculosRoutes = require('./routes/vehiculos');
 const zonasRoutes = require('./routes/zonas');
@@ -21,7 +23,7 @@ const cuentasRoutes = require('./routes/cuentas');
 const logVehiculosRoutes = require('./routes/logVehiculos');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 
 // CONFIGURACIÓN
 
@@ -32,6 +34,7 @@ app.use(cors({
 app.use(express.json());
 
 // REGISTRO RUTAS API
+app.use('/api/iu/favoritos', favoritosRoutes); // Mi API
 app.use('/api/conductores', conductoresRoutes);
 app.use('/api/vehiculos', vehiculosRoutes);
 app.use('/api/zonas', zonasRoutes);
@@ -56,6 +59,8 @@ iniciarWebSocket(httpServer);
 
 async function start() {
   try {
+    await conectarDB();
+
     await subClient.connect();
     await pubClient.connect();
     console.log("Conectado a Redis. Publicador y Suscriptor listos.");
@@ -66,6 +71,7 @@ async function start() {
     httpServer.listen(PORT, () => {
       console.log(`Servidor corriendo en http://localhost:${PORT}`);
       console.log(`Ruta GET /api/iu/estado en http://localhost:${PORT}/api/iu/estado`);
+      console.log(`Ruta GET /api/iu/favoritos en http://localhost:${PORT}/api/iu/favoritos`);
     }); 
   } catch (err) {
     console.error('Error fatal arrancando el servidor:', err);

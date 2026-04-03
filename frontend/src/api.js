@@ -1,4 +1,4 @@
-const BASE = "http://localhost:8080";
+const BASE = `http://${window.location.hostname}:8080`;
 
 // Helper interno: hace el fetch y lanza error si la respuesta no es 2xx
 async function apiFetch(path, token = null) {
@@ -28,4 +28,34 @@ export function getNotificaciones(conductorId, token) {
 // --- Cargas activas ---
 export function getCargas(token) {
   return apiFetch("/api/cargas", token);
+}
+
+// --- Favoritos ---
+export function getFavoritos(token) {
+  return apiFetch("/api/iu/favoritos", token);
+}
+
+export async function createFavorito(idZona, token) {
+  const headers = { "Content-Type": "application/json" };
+  if (token) headers["Authorization"] = `Bearer ${token}`;
+
+  const res = await fetch(`${BASE}/api/iu/favoritos`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ idZona })
+  });
+  if (!res.ok) throw new Error(`Error ${res.status} creando favorito`);
+  return res.json();
+}
+
+export async function deleteFavorito(id, token) {
+  const headers = { "Content-Type": "application/json" };
+  if (token) headers["Authorization"] = `Bearer ${token}`;
+
+  const res = await fetch(`${BASE}/api/iu/favoritos/${id}`, {
+    method: "DELETE",
+    headers
+  });
+  if (!res.ok) throw new Error(`Error ${res.status} eliminando favorito`);
+  return res.status === 204 ? null : res.json();
 }

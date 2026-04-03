@@ -7,10 +7,21 @@ services:
     networks:
       - fleet-network
 
+  mongo:
+    image: mongo:6
+    container_name: mongo_iu
+    ports:
+      - "27017:27017"
+    networks:
+      - fleet-network
+    volumes:
+      - mongo-data:/data/db
+
   backend:
     build: ./backend
     depends_on:
       - redis-mock
+      - mongo
     env_file:
       - ./backend/.env
     ports:
@@ -32,3 +43,6 @@ services:
 networks:
   fleet-network:
     driver: bridge
+
+volumes:
+  mongo-data:

@@ -78,5 +78,4 @@ const iniciarSimulacion = (redisPublisher) => {
     }, 15000);
 };
 
-// Exportamos el objeto y la función
 module.exports = { estadoSistema, iniciarSimulacion };
