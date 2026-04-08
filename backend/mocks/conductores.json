@@ -18,5 +18,18 @@
       "expiraEn": 3600,
       "tipo": "Bearer"
     }
+  ],
+  "/api/conductores/validate": [
+    {
+      "idConductor": "cond-2022",
+      "nombre": "Alberto",
+      "email": "alberto@gmail.com",
+      "password": "contraseña1234",
+      "idCuenta": "cta-1",
+      "rol": "USUARIO",
+      "token": "eyJhbGciO-REGISTRO",
+      "expiraEn": 3600,
+      "tipo": "Bearer"
+    }
   ]
 }
