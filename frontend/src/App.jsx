@@ -1,38 +1,37 @@
-import { useEffect, useState, useRef } from "react";
-import { getVehiculos, getZonas, getNotificaciones, getCargas } from "./api";
+import { useEffect, useState } from "react";
+import { useAuth, AuthProvider } from "./context/AuthContext";
+import { AppProvider } from "./context/AppContext";
+import AuthPage from "./components/Auth/AuthPage";
+import { getVehiculos, getZonas, getNotificaciones } from "./api";
 import KpiBar from "./components/KpiBar";
 import VehiculosTable from "./components/VehiculosTable";
 import ZonasPanel from "./components/ZonasPanel";
 import AlertasSidebar from "./components/AlertasSidebar";
+import "./styles/global.css";
 
 // ID del conductor logueado. En el futuro vendrá del token JWT tras el login.
 const CONDUCTOR_ID = "cond-2022";
 const TOKEN = null; // null mientras usamos mocks sin autenticación real
 
-function App() {
+function Dashboard() {
   const [vehiculos, setVehiculos] = useState([]);
   const [zonas, setZonas] = useState([]);
   const [alertas, setAlertas] = useState([]);
-  const [cargas, setCargas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [connected, setConnected] = useState(false);
-  const socketRef = useRef(null);
 
   // Carga inicial por Rest
   useEffect(() => {
     async function cargarDatosIniciales() {
       try {
-        const [v, z, n, c] = await Promise.all([
+        const [v, z, n] = await Promise.all([
           getVehiculos(TOKEN),
           getZonas(TOKEN),
           getNotificaciones(CONDUCTOR_ID, TOKEN),
-          getCargas(TOKEN),
         ]);
         setVehiculos(v);
         setZonas(z);
         setAlertas(n);
-        setCargas(c);
       } catch (err) {
         setError("Error cargando datos iniciales: " + err.message);
       } finally {
@@ -43,83 +42,22 @@ function App() {
     cargarDatosIniciales();
   }, []);
 
-  // Actualizaciones en tiempo real a través de Web Socket
-  useEffect(() => {
-    const socket = new WebSocket(`ws://${window.location.hostname}}:8080`);
-
-    socket.onopen = () => {
-      setConnected(true);
-      console.log("Conectado al servidor WebSocket");
-    };
-
-    socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      const { type, payload } = data;
-
-      // Aquí filtramos según el tipo de mensaje que enviemos desde el servidor
-      switch (type) {
-        // Canal de VehiculosService
-        case "vehiculos:posiciones":
-          if (payload.actualizaciones) {
-            setVehiculos((prev) => {
-              const siguiente = [...prev];
-              payload.actualizaciones.forEach((update) => {
-                const idx = siguiente.findIndex(v => v.idVehiculo === update.idVehiculo);
-                if (idx !== -1) {
-                  siguiente[idx] = { ...siguiente[idx], ...update };
-                } else {
-                  siguiente.push(update);
-                }
-              });
-              return siguiente;
-            });
-          }
-          break;
-
-        // Canal de ZonasCargaService
-        case "infraestructura:postes":
-          setZonas((prev) => {
-            const zonaData = payload.payload ? payload.payload : payload;
-            
-            const idx = prev.findIndex(z => z.idZona === zonaData.idZona);
-            if (idx !== -1) {
-              const siguiente = [...prev];
-              siguiente[idx] = { ...siguiente[idx], ...zonaData };
-              return siguiente;
-            }
-            return [...prev, zonaData]; // zona nueva
-          });
-          break;
-
-        // Canal de NotificationsService
-        case "sistema:notificaciones":
-          setAlertas((prev) => [payload, ...prev].slice(0, 10)); // máx 10
-          break;
-
-        default:
-          console.log("Evento WebSocket no manejado:", type);
-      }
-    };
-
-    socket.onerror  = () => setConnected(false);
-    socket.onclose  = () => setConnected(false);
-    socketRef.current = socket;
-
-    return () => socket.close();
-  }, []);
-
-  // Renderizado
-
   if (loading) return <p style={{ padding: "20px" }}>Cargando datos...</p>;
   if (error) return <p style={{ padding: "20px", color: "red" }}>{error}</p>;
 
   return (
-    <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
+    <div style={{ 
+      backgroundColor: 'white', 
+      color: 'black',
+      height: '100vh',
+      overflow: 'auto',
+      fontFamily: 'sans-serif',
+      padding: "20px" 
+    }}>
 
       {/* Cabecera */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
         <h1 style={{ margin: 0 }}>IU Maestra — Control de Flota</h1>
-        <span>{connected ? "🟢 Conectado" : "🔴 Desconectado"}</span>
       </div>
 
       {/* KPIs */}
@@ -127,7 +65,7 @@ function App() {
         totalVehiculos={vehiculos.length}
         zonasActivas={zonas.filter(z => z.estado === "HABILITADA").length}
         alertasAbiertas={alertas.length}
-        cargasActivas={cargas.length}
+        cargasActivas={2}
       />
 
       {/* Cuerpo: contenido principal + sidebar */}
@@ -150,4 +88,37 @@ function App() {
   );
 }
 
-export default App;
+function AppInner() {
+  const { conductor, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div style={{
+        height: "100vh", display: "flex", alignItems: "center",
+        justifyContent: "center", background: "var(--bg-deep)",
+        flexDirection: "column", gap: "16px"
+      }}>
+        <span style={{ fontSize: "32px", filter: "drop-shadow(0 0 12px #00d4ff)" }}>⚡</span>
+        <span style={{ fontFamily: "var(--font-mono)", color: "var(--text-muted)", fontSize: "13px" }}>
+          Cargando sesión…
+        </span>
+      </div>
+    );
+  }
+
+  if (!conductor) return <AuthPage />;
+
+  return (
+    <AppProvider>
+      <Dashboard />
+    </AppProvider>
+  );
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppInner />
+    </AuthProvider>
+  );
+}

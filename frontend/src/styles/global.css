@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap');
+
+/* ── Variables ───────────────────────────────────────────────── */
+:root {
+  /* Colores base */
+  --bg-deep:        #0a0c10;
+  --bg-panel:       #0f1218;
+  --bg-card:        #161b24;
+  --bg-card-hover:  #1c2330;
+  --bg-input:       #1a2030;
+  --border:         #232c3d;
+  --border-light:   #2d3a50;
+
+  /* Texto */
+  --text-primary:   #e8edf5;
+  --text-secondary: #7a8ba0;
+  --text-muted:     #4a5568;
+
+  /* Acento principal — cian eléctrico */
+  --accent:         #00d4ff;
+  --accent-dim:     rgba(0, 212, 255, 0.12);
+  --accent-glow:    rgba(0, 212, 255, 0.25);
+
+  /* Estados de postes */
+  --green:          #00e676;
+  --green-dim:      rgba(0, 230, 118, 0.15);
+  --orange:         #ff9800;
+  --orange-dim:     rgba(255, 152, 0, 0.15);
+  --red:            #f44336;
+  --red-dim:        rgba(244, 67, 54, 0.15);
+
+  /* Dimensiones del layout */
+  --nav-width:      64px;
+  --panel-width:    340px;
+  --topbar-height:  56px;
+
+  /* Tipografía */
+  --font-display:   'Syne', sans-serif;
+  --font-mono:      'DM Mono', monospace;
+
+  /* Sombras */
+  --shadow-card:    0 4px 24px rgba(0,0,0,0.4);
+  --shadow-glow:    0 0 20px rgba(0, 212, 255, 0.15);
+
+  /* Transiciones */
+  --ease:           cubic-bezier(0.16, 1, 0.3, 1);
+  --duration:       220ms;
+}
+
+/* ── Reset ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 2px; }
+
+/* ── Utilidades globales ─────────────────────────────────────── */
+.font-display { font-family: var(--font-display); }
+.font-mono    { font-family: var(--font-mono); }
+
+.text-accent   { color: var(--accent); }
+.text-green    { color: var(--green); }
+.text-orange   { color: var(--orange); }
+.text-red      { color: var(--red); }
+.text-muted    { color: var(--text-muted); }
+.text-secondary{ color: var(--text-secondary); }
+
+/* ── Animaciones base ────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(-16px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-fadeUp       { animation: fadeUp 0.4s var(--ease) both; }
+.animate-fadeIn       { animation: fadeIn 0.3s var(--ease) both; }
+.animate-slideInRight { animation: slideInRight 0.35s var(--ease) both; }
+
+/* Staggered children */
+.stagger > *:nth-child(1) { animation-delay: 0ms; }
+.stagger > *:nth-child(2) { animation-delay: 60ms; }
+.stagger > *:nth-child(3) { animation-delay: 120ms; }
+.stagger > *:nth-child(4) { animation-delay: 180ms; }
+.stagger > *:nth-child(5) { animation-delay: 240ms; }
+
+/* ── Leaflet overrides ───────────────────────────────────────── */
+.leaflet-container {
+  background: #0a0c10 !important;
+  font-family: var(--font-mono) !important;
+}
+.leaflet-tile-pane { filter: brightness(0.55) saturate(0.4) hue-rotate(180deg); }
+.leaflet-control-zoom a {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border) !important;
+}
+.leaflet-control-attribution {
+  background: rgba(10,12,16,0.7) !important;
+  color: var(--text-muted) !important;
+  font-size: 10px !important;
+}

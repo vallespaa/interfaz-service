@@ -9,8 +9,11 @@ import { api, setToken, removeToken } from "./apiClient";
  * @param {{ nombre: string, email: string, password: string }} datos
  * @returns {Promise<{ idConductor: string, nombre: string, email: string, password: string, idCuenta: string }>}
  */
-export const registrarConductor = (datos) =>
-  api.post("/conductores", datos);
+export const registrarConductor = async (datos) => { 
+  const data = await api.post("/conductores", { conductor: datos });
+  if (data?.token) setToken(data.token);
+  return data;
+};
 
 /**
  * Inicia sesión y guarda el token recibido.
