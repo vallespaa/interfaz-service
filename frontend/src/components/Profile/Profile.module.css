@@ -1,0 +1,159 @@
+.page {
+  padding: 24px 28px;
+  max-width: 580px;
+  margin: 0 auto;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Avatar section */
+.avatarSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.avatar {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 20px var(--accent-glow);
+  flex-shrink: 0;
+}
+.nombre {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.email {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* Cards */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* IBAN display */
+.ibanDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px;
+  background: linear-gradient(135deg, #0f1a2e 0%, #061224 100%);
+  border: 1px solid rgba(0,212,255,0.2);
+  border-radius: 10px;
+}
+.ibanLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+.ibanVal {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+}
+
+/* Saldo row */
+.saldoRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.saldoItem {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.saldoLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.saldoVal {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Data rows */
+.dataRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.dataRow:last-child { border-bottom: none; }
+.dataRow span  { color: var(--text-secondary); }
+.dataRow strong {
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Loading */
+.skeletonBlock {
+  height: 80px;
+  background: var(--bg-input);
+  border-radius: 8px;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+.empty { font-size: 13px; color: var(--text-muted); }
+
+/* Logout */
+.logoutBtn {
+  margin-top: auto;
+  background: transparent;
+  border: 1px solid var(--red);
+  color: var(--red);
+  border-radius: 8px;
+  padding: 11px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background var(--duration);
+}
+.logoutBtn:hover { background: var(--red-dim); }

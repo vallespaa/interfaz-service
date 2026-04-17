@@ -1,0 +1,376 @@
+.panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* ── Headers ── */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+}
+.sectionCount {
+  font-size: 11px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* ── Loading ── */
+.loadingList { display: flex; flex-direction: column; gap: 8px; }
+.skeleton {
+  height: 64px;
+  background: var(--bg-card);
+  border-radius: 10px;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+.empty {
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+  padding: 32px 0;
+}
+
+/* ── Zonas list ── */
+.zonasList { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+
+.zonaCard {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--duration) var(--ease), background var(--duration) var(--ease);
+}
+.zonaCard:hover {
+  border-color: var(--border-light);
+  background: var(--bg-card-hover);
+}
+
+.zonaInfo { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.zonaNombre { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+.zonaMeta   { font-size: 11px; color: var(--text-secondary); }
+
+.zonaStatus { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+
+/* ── Detalle zona ── */
+.detalleHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.backBtn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color var(--duration), color var(--duration);
+}
+.backBtn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Grid de postes */
+.postesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.posteCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: border-color var(--duration), background var(--duration), box-shadow var(--duration);
+  position: relative;
+}
+.posteCard:hover:not(:disabled) {
+  border-color: var(--border-light);
+  background: var(--bg-card-hover);
+}
+.posteCardSel {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px var(--accent-dim);
+  background: var(--accent-dim) !important;
+}
+.posteCardDisabled { opacity: 0.5; cursor: not-allowed; }
+
+.posteEstadoDot {
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+}
+.posteNombre  { font-size: 12px; font-weight: 600; color: var(--text-primary); padding-right: 14px; }
+.posteTipo    { font-size: 10px; color: var(--text-secondary); }
+.posteTarifa  { font-size: 13px; font-weight: 500; color: var(--accent); margin-top: 2px; }
+.posteEstadoLabel { font-size: 10px; font-weight: 600; margin-top: 2px; }
+
+/* Resumen poste seleccionado */
+.posteResumen {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.posteResumenRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.posteResumenRow:last-of-type { border-bottom: none; }
+.posteResumenRow span  { color: var(--text-secondary); }
+.posteResumenRow strong { color: var(--text-primary); }
+.posteResumenNote {
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 6px 12px 10px;
+  border-top: 1px solid var(--border);
+}
+
+.errorInline {
+  color: var(--red);
+  font-size: 12px;
+  padding: 8px 12px;
+  background: var(--red-dim);
+  border-radius: 6px;
+  border-left: 2px solid var(--red);
+}
+
+.btnReservar {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity var(--duration);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.btnReservar:hover:not(:disabled) { opacity: 0.85; }
+.btnReservar:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Reserva ── */
+.reservaBadge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--orange);
+  background: var(--orange-dim);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--orange);
+}
+.cargaBadge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--accent);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+.simpleTimer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px 0;
+  align-items: center;
+}
+
+.timerTime {
+  font-family: var(--font-mono);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.reservaInfo {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.reservaInfoRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.reservaInfoRow:last-child { border-bottom: none; }
+.reservaInfoRow span   { color: var(--text-secondary); }
+.reservaInfoRow strong { color: var(--text-primary); font-family: var(--font-mono); }
+
+.reservaNote {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  padding: 0 2px;
+}
+
+.btnDanger {
+  background: transparent;
+  border: 1px solid var(--red);
+  color: var(--red);
+  border-radius: 8px;
+  padding: 11px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background var(--duration), color var(--duration);
+}
+.btnDanger:hover:not(:disabled) { background: var(--red-dim); }
+.btnDanger:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btnSecondarySmall {
+  background: none;
+  border: 1px dashed var(--border);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  padding: 7px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color var(--duration), border-color var(--duration);
+}
+.btnSecondarySmall:hover { color: var(--text-secondary); border-color: var(--border-light); }
+
+/* ── Carga activa ── */
+.duracionDisplay {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--text-primary);
+  text-align: center;
+  letter-spacing: 0.05em;
+  padding: 4px 0;
+}
+
+.batWidget {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.batLabel {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.batLabel strong { font-size: 14px; }
+.batBar {
+  height: 12px;
+  background: var(--bg-input);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  position: relative;
+}
+.batFill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 1s ease, background 1s ease;
+  box-shadow: 0 0 8px currentColor;
+}
+.batTip {
+  width: 4px; height: 6px;
+  background: var(--border);
+  border-radius: 0 2px 2px 0;
+  position: absolute;
+  right: -5px; top: 50%;
+  transform: translateY(-50%);
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.metricCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.metricCard:last-child {
+  grid-column: span 2;
+}
+.metricCardAccent { border-color: rgba(0,212,255,0.2); }
+.metricVal   { font-size: 20px; font-weight: 500; color: var(--text-primary); }
+.metricLabel { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ── Toast ── */
+.toast {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: var(--orange);
+  color: #000;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(255,152,0,0.4);
+  animation: toastIn 0.35s var(--ease) both;
+  white-space: nowrap;
+}
+
+/* Spinner */
+.spinnerDark {
+  display: inline-block;
+  width: 14px; height: 14px;
+  border: 2px solid rgba(0,0,0,0.3);
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}

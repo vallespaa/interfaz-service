@@ -1,0 +1,144 @@
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-deep);
+}
+
+/* ── Main area ── */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Topbar ── */
+.topbar {
+  height: var(--topbar-height);
+  min-height: var(--topbar-height);
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 12px;
+  z-index: 50;
+}
+
+.logo {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  filter: drop-shadow(0 0 8px var(--accent));
+}
+.logo:hover {
+  filter: drop-shadow(0 0 12px var(--accent));
+}
+
+.topbarRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.saldoBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 4px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.saldoBtn:hover {
+  border-color: var(--accent);
+}
+.saldoLabel {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  line-height: 1;
+}
+.saldoVal {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1.4;
+}
+
+.notifBtn {
+  position: relative;
+  width: 36px; height: 36px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color var(--duration);
+}
+.notifBtn:hover { border-color: var(--accent); }
+
+.notifBadge {
+  position: absolute;
+  top: -4px; right: -4px;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  border-radius: 6px;
+  min-width: 16px; height: 16px;
+  padding: 0 3px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.userBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px 4px 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+.userBtn:hover {
+  border-color: var(--accent);
+}
+.userAvatar {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.userName { font-size: 12px; color: var(--text-secondary); }
+
+/* ── Content area ── */
+.content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.mapArea {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.rightPanel {
+  width: var(--panel-width);
+  min-width: var(--panel-width);
+  background: var(--bg-panel);
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  overflow-x: hidden;
+}

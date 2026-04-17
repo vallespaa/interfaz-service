@@ -1,7 +1,5 @@
 import { api, setToken, removeToken } from "./apiClient";
 
-// TODO: Revisar gestión del Token
-
 /**
  * Registra un nuevo conductor.
  * El backend crea automáticamente una cuenta bancaria asociada.
