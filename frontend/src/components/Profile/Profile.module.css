@@ -1,6 +1,6 @@
 .page {
   padding: 24px 28px;
-  max-width: 580px;
+  max-width: 650px;
   margin: 0 auto;
   height: 100%;
   overflow-y: auto;
@@ -52,15 +52,120 @@
   flex-direction: column;
   gap: 12px;
 }
-.cardTitle {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--border);
+}
+.cardHeader .cardTitle {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.addBtn {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.addBtn:hover {
+  background: var(--accent);
+  color: var(--bg-main);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  background: var(--bg-input);
+  border-radius: 8px;
+  border: 1px dashed var(--border);
+  margin-bottom: 8px;
+}
+.form input {
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 10px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+.form input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.saveBtn {
+  background: var(--accent);
+  color: var(--bg-main);
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.saveBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vehiculosList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.vehiculoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: border-color 0.2s;
+}
+.vehiculoItem:hover {
+  border-color: var(--accent-dim);
+}
+
+.vInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.vInfo strong {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--text-primary);
+}
+.vInfo span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+.vBadge {
+  background: var(--bg-input);
+  color: var(--orange);
+  border: 1px solid rgba(255, 165, 0, 0.2);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
 }
 
 /* IBAN display */
@@ -146,6 +251,7 @@
 /* Logout */
 .logoutBtn {
   margin-top: auto;
+  margin-bottom: 24px;
   background: transparent;
   border: 1px solid var(--red);
   color: var(--red);
