@@ -1,21 +1,57 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useApp } from "../../context/AppContext";
-import { getZonasCercanas } from "../../api";
+import { getZonasCercanas, getFavoritos, crearFavorito, eliminarFavorito } from "../../api";
 import styles from "./Panel.module.css";
 
 export default function ZonasList() {
   const { seleccionarZona } = useApp();
   const [zonas, setZonas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [favoritosMap, setFavoritosMap] = useState({});
 
   useEffect(() => {
     const coordenadas = { lat: 41.6488, lng: -0.8891, radio: 3000 };
 
-    getZonasCercanas(coordenadas)
-      .then(setZonas)
-      .catch((error) => console.error("Error al cargar zonas:", error))
+    Promise.all([
+      getZonasCercanas(coordenadas),
+      getFavoritos()
+    ])
+      .then(([zonasData, favoritosData]) => {
+        setZonas(zonasData);
+        const mapa = {};
+        favoritosData.forEach(f => { mapa[f.idZona] = f.idFavorito; });
+        setFavoritosMap(mapa);
+      })
+      .catch((error) => console.error("Error al cargar zonas o favoritos:", error))
       .finally(() => setLoading(false));
   }, []);
+
+  const toggleFavorito = useCallback(async (e, zona) => {
+    e.stopPropagation();
+
+    const idZona = zona.idZona;
+    const esFavorito = !!favoritosMap[idZona];
+
+    if (esFavorito) {
+      const idFavoritoAnterior = favoritosMap[idZona];
+      setFavoritosMap(prev => { const s = { ...prev }; delete s[idZona]; return s; });
+      try {
+        await eliminarFavorito(idFavoritoAnterior);
+      } catch {
+        // Revertir si falla
+        setFavoritosMap(prev => ({ ...prev, [idZona]: idFavoritoAnterior }));
+      }
+    } else {
+      setFavoritosMap(prev => ({ ...prev, [idZona]: "pending" }));
+      try {
+        const nuevo = await crearFavorito(idZona);
+        setFavoritosMap(prev => ({ ...prev, [idZona]: nuevo.idFavorito }));
+      } catch {
+        setFavoritosMap(prev => { const s = { ...prev }; delete s[idZona]; return s; });
+      }
+    }
+  }, [favoritosMap]);
+
 
   return (
     <div className={styles.section}>
@@ -33,11 +69,15 @@ export default function ZonasList() {
       ) : (
         <ul className={`${styles.zonasList} stagger`}>
           {zonas.map(zona => {
+            const esFavorito = !!favoritosMap[zona.idZona];
             return (
               <li key={zona.idZona}>
-                <button
+                <div
                   className={styles.zonaCard}
                   onClick={() => seleccionarZona(zona)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === "Enter" && seleccionarZona(zona)}
                 >
                   <div className={styles.zonaInfo}>
                     <span className={styles.zonaNombre}>{zona.nombre}</span>
@@ -50,7 +90,14 @@ export default function ZonasList() {
                       {zona.postesLibres ?? "?"}/{zona.capacidadTotal ?? "?"} libres
                     </span>
                   </div>
-                </button>
+                  <button
+                    className={`${styles.favBtn} ${esFavorito ? styles.favActive : ""}`}
+                    onClick={(e) => toggleFavorito(e, zona)}
+                    title={esFavorito ? "Quitar de favoritos" : "Añadir a favoritos"}
+                  >
+                    {esFavorito ? "★" : "☆"}
+                  </button>
+                </div>
               </li>
             );
           })}

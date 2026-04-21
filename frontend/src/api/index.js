@@ -2,6 +2,7 @@
 export { api, ApiError, setToken, getToken, removeToken } from "./apiClient";
 
 // ─── Módulos por dominio ──────────────────────────────────────────────────────
+export * from "./favoritos";
 export * from "./conductores";
 export * from "./cuentas";
 export * from "./zonas";
