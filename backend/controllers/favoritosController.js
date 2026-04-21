@@ -2,7 +2,10 @@ const Favorito = require('../models/favoritos');
 const { v4: uuidv4 } = require('uuid');
 const { pubClient } = require('../config/redis');
 
-// TODO: Pendiente de probar con datos de producción
+const publicarEvento = (evento) => {
+  pubClient.publish(process.env.CANAL_IUMAESTRO, JSON.stringify(evento))
+    .catch(err => console.error('[Redis] Error al publicar evento:', err));
+};
 
 const FavoritoController = {
   // GET /api/iu/favoritos
@@ -16,7 +19,7 @@ const FavoritoController = {
     }
   },
 
-  // POST /api/favoritos
+  // POST /api/iu/favoritos
   create: async (req, res) => {
     try {
       const { idZona } = req.body;
@@ -32,22 +35,23 @@ const FavoritoController = {
       });
 
       await nuevoFavorito.save();
+      res.status(201).json(nuevoFavorito);
 
-      // Evento Redis
-      const evento = {
+      publicarEvento({
         tipo: "FAVORITO_CREADO",
         fecha: new Date().toISOString(),
-        datos: nuevoFavorito
-      };
-      await pubClient.publish('iumaestro.favoritos', JSON.stringify(evento));
-
-      res.status(201).json(nuevoFavorito);
+        datos: {
+          idFavorito: nuevoFavorito.idFavorito,
+          idConductor: nuevoFavorito.idConductor,
+          idZona: nuevoFavorito.idZona
+        }
+      });
     } catch (error) {
       res.status(400).json({ mensaje: "Error al crear favorito", error: error.message });
     }
   },
 
-  // DELETE /api/favoritos/:id
+  // DELETE /api/iu/favoritos/:id
   delete: async (req, res) => {
     try {
       const { id } = req.params;
@@ -63,16 +67,17 @@ const FavoritoController = {
       }
 
       await Favorito.deleteOne({ idFavorito: id });
+      res.status(204).send();
 
-      // Evento Redis
-      const evento = {
+      publicarEvento({
         tipo: "FAVORITO_ELIMINADO",
         fecha: new Date().toISOString(),
-        datos: favorito
-      };
-      await pubClient.publish('iumaestro.favoritos', JSON.stringify(evento));
-
-      res.status(204).send();
+        datos: {
+          idFavorito: favorito.idFavorito,
+          idConductor: favorito.idConductor,
+          idZona: favorito.idZona
+        }
+      });
     } catch (error) {
       res.status(500).json({ mensaje: "Error al eliminar" });
     }
