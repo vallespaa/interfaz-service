@@ -69,7 +69,7 @@ export default function HistorialPage() {
         </div>
         <div className={styles.summaryCard}>
           <span className={styles.summaryLabel}>kWh Entregados</span>
-          <span className={styles.summaryVal}>{cargas.metadatos.energiaEntregadaKw}</span>
+          <span className={styles.summaryVal}>{totalKwh}</span>
         </div>
       </div>
 
