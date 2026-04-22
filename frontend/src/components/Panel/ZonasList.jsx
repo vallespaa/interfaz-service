@@ -10,7 +10,7 @@ export default function ZonasList() {
   const [favoritosMap, setFavoritosMap] = useState({});
 
   useEffect(() => {
-    const coordenadas = { lat: 41.6488, lng: -0.8891, radio: 3000 };
+    const coordenadas = { lat: 40.3436, lng: -1.1062, radio: 3000 };
 
     Promise.all([
       getZonasCercanas(coordenadas),

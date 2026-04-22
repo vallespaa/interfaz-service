@@ -2,7 +2,7 @@
   "/api/historico": [
     {
       "idRegistro": "hist-001",
-      "idCliente": "cond-2022",
+      "idCliente": "COND-7",
       "idVehiculo": "veh-5501",
       "idPoste": "P-01",
       "fechaInicio": "2026-03-20T10:00:00Z",
@@ -17,7 +17,7 @@
     },
     {
       "idRegistro": "hist-002",
-      "idCliente": "cond-2022",
+      "idCliente": "COND-7",
       "idVehiculo": "veh-5501",
       "idPoste": "P-06",
       "fechaInicio": "2026-03-19T18:00:00Z",
@@ -33,7 +33,7 @@
   ],
   "/api/historico/hist-001": {
     "idRegistro": "hist-001",
-    "idCliente": "cond-2022",
+    "idCliente": "COND-7",
     "idVehiculo": "veh-5501",
     "idPoste": "P-01",
     "fechaInicio": "2026-03-20T10:00:00Z",
@@ -48,7 +48,7 @@
   },
   "/api/historico/hist-002": {
     "idRegistro": "hist-002",
-    "idCliente": "cond-2022",
+    "idCliente": "COND-7",
     "idVehiculo": "veh-5501",
     "idPoste": "P-06",
     "fechaInicio": "2026-03-19T18:00:00Z",

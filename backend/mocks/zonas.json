@@ -1,9 +1,9 @@
 {
   "/api/zonas": [
     {
-      "idZona": "Z-ZGZ-01",
-      "nombre": "Estación Delicias",
-      "coordenadas": { "lat": 41.6488, "lng": -0.9101 },
+      "idZona": "Z-TER-01",
+      "nombre": "Estación de Teruel",
+      "coordenadas": { "lat": 40.3392, "lng": -1.1118 },
       "postesLibres": 3,
       "capacidadTotal": 5,
       "precioPorKWh": 0.32,
@@ -11,9 +11,9 @@
       "estado": "HABILITADA"
     },
     {
-      "idZona": "Z-ZGZ-02",
-      "nombre": "Plaza del Pilar",
-      "coordenadas": { "lat": 41.6561, "lng": -0.8773 },
+      "idZona": "Z-TER-02",
+      "nombre": "Plaza del Torico",
+      "coordenadas": { "lat": 40.3426, "lng": -1.1068 },
       "postesLibres": 1,
       "capacidadTotal": 4,
       "precioPorKWh": 0.45,
@@ -21,11 +21,21 @@
       "estado": "HABILITADA"
     },
     {
-      "idZona": "Z-ZGZ-03",
-      "nombre": "Parque Goya",
-      "coordenadas": { "lat": 41.6701, "lng": -0.8520 },
+      "idZona": "Z-TER-03",
+      "nombre": "Plaza de Toros",
+      "coordenadas": { "lat": 40.3346, "lng": -1.1032 },
       "postesLibres": 0,
       "capacidadTotal": 3,
+      "precioPorKWh": 0.29,
+      "tipoTarifa": "ESTANDAR",
+      "estado": "HABILITADA"
+    },
+    {
+      "idZona": "Z-TER-04",
+      "nombre": "Universidad",
+      "coordenadas": { "lat": 40.3495, "lng": -1.1035 },
+      "postesLibres": 2,
+      "capacidadTotal": 6,
       "precioPorKWh": 0.29,
       "tipoTarifa": "ESTANDAR",
       "estado": "HABILITADA"
@@ -33,34 +43,40 @@
   ],
   "/api/zonas/cercanas": [
     {
-      "idZona": "Z-ZGZ-01",
-      "nombre": "Estación Delicias",
-      "coordenadas": { "lat": 41.6488, "lng": -0.9101 },
+      "idZona": "Z-TER-01",
+      "nombre": "Estación de Teruel",
+      "coordenadas": { "lat": 40.3392, "lng": -1.1118 },
       "postesLibres": 3,
       "capacidadTotal": 5,
       "precioPorKWh": 0.32,
       "tipoTarifa": "ESTANDAR",
-      "distanciaKm": 0.4,
-      "tiempoEstimadoMinutos": 2,
       "estado": "HABILITADA"
     },
     {
-      "idZona": "Z-ZGZ-02",
-      "nombre": "Plaza del Pilar",
-      "coordenadas": { "lat": 41.6561, "lng": -0.8773 },
+      "idZona": "Z-TER-02",
+      "nombre": "Plaza del Torico",
+      "coordenadas": { "lat": 40.3426, "lng": -1.1068 },
       "postesLibres": 1,
       "capacidadTotal": 4,
       "precioPorKWh": 0.45,
       "tipoTarifa": "PREMIUM",
-      "distanciaKm": 1.2,
-      "tiempoEstimadoMinutos": 5,
+      "estado": "HABILITADA"
+    },
+    {
+      "idZona": "Z-TER-04",
+      "nombre": "Universidad",
+      "coordenadas": { "lat": 40.3495, "lng": -1.1035 },
+      "postesLibres": 2,
+      "capacidadTotal": 6,
+      "precioPorKWh": 0.29,
+      "tipoTarifa": "ESTANDAR",
       "estado": "HABILITADA"
     }
   ],
-  "/api/zonas/Z-ZGZ-01": {
-    "idZona": "Z-ZGZ-01",
-    "nombre": "Estación Delicias",
-    "coordenadas": { "lat": 41.6488, "lng": -0.9101 },
+  "/api/zonas/Z-TER-01": {
+    "idZona": "Z-TER-01",
+    "nombre": "Estación de Teruel",
+    "coordenadas": { "lat": 40.3346, "lng": -1.1022 },
     "postesLibres": 3,
     "capacidadTotal": 5,
     "idsPostes": ["P-01", "P-02", "P-03", "P-04", "P-05"],
@@ -72,10 +88,10 @@
   },
   "POST:/api/reservas": {
     "idReserva": "RES-mock-0001",
-    "idZona": "Z-ZGZ-01",
+    "idZona": "Z-TER-01",
     "idPoste": "P-03",
     "idVehiculo": "veh-5501",
-    "idUsuario": "cond-2022",
+    "idUsuario": "COND-7",
     "estado": "PENDIENTE",
     "fechaCreacion": "2026-03-22T10:00:00Z",
     "fechaExpiracion": "2026-03-22T10:15:00Z",

@@ -3,7 +3,7 @@
     {
       "idNotificacion": "9c2b0f7a-3a6d-4f1a-8e2b-0d4b1f2c9a11",
       "idAlerta": "a1f3c2b4-7d10-4e6b-9c1a-2f6d8a0b1234",
-      "idConductor": "cond-2022",
+      "idConductor": "COND-7",
       "estado": "ABIERTA",
       "mensaje": "La reserva del poste P-04 está a punto de expirar (2 minutos).",
       "fechaCreacion": "2026-03-22T09:58:00Z",
@@ -12,7 +12,7 @@
     {
       "idNotificacion": "1a3d5f7b-9c2e-4a6b-8d0f-2e4c6a8b0d12",
       "idAlerta": "b2e4f6a8-8c12-4d7e-a0b2-3e5f7a9b1c23",
-      "idConductor": "cond-2022",
+      "idConductor": "COND-7",
       "estado": "ABIERTA",
       "mensaje": "El poste P-07 se ha averiado en la zona Plaza del Pilar.",
       "fechaCreacion": "2026-03-22T08:30:00Z",
@@ -22,7 +22,7 @@
   "/api/notificaciones/9c2b0f7a-3a6d-4f1a-8e2b-0d4b1f2c9a11": {
     "idNotificacion": "9c2b0f7a-3a6d-4f1a-8e2b-0d4b1f2c9a11",
     "idAlerta": "a1f3c2b4-7d10-4e6b-9c1a-2f6d8a0b1234",
-    "idConductor": "cond-2022",
+    "idConductor": "COND-7",
     "estado": "ABIERTA",
     "mensaje": "La reserva del poste P-04 está a punto de expirar (2 minutos).",
     "fechaCreacion": "2026-03-22T09:58:00Z",
@@ -31,7 +31,7 @@
   "PATCH:/api/notificaciones/9c2b0f7a-3a6d-4f1a-8e2b-0d4b1f2c9a11/ack": {
     "idNotificacion": "9c2b0f7a-3a6d-4f1a-8e2b-0d4b1f2c9a11",
     "idAlerta": "a1f3c2b4-7d10-4e6b-9c1a-2f6d8a0b1234",
-    "idConductor": "cond-2022",
+    "idConductor": "COND-7",
     "estado": "ACK",
     "mensaje": "La reserva del poste P-04 está a punto de expirar (2 minutos).",
     "fechaCreacion": "2026-03-22T09:58:00Z",
@@ -55,8 +55,8 @@
       "idEntidad": "P-07",
       "fecha": "2026-03-22T08:29:00Z",
       "contexto": {
-        "idZona": "Z-ZGZ-02",
-        "nombreZona": "Plaza del Pilar"
+        "idZona": "Z-TER-02",
+        "nombreZona": "Plaza del Torico"
       }
     }
   ],

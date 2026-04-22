@@ -1,4 +1,4 @@
-let estadoSistema = {
+﻿let estadoSistema = {
     listaVehiculos: [
       { "idVehiculo": "veh-5501", "idConductor": "cond-2022", "matricula": "1234-XYZ", "latitud": 40.4167, "longitud": -3.7032, "velocidad": 50.5, "nivelBateriaActual": 45.2, "capacidadBateriaMaxima": 60.0, "estado": "EN_USO"},
       { "idVehiculo": "veh-5551", "idConductor": "cond-5551", "matricula": "1234-XYZ", "latitud": 40.3455, "longitud": -1.1042, "velocidad": 50.5, "nivelBateriaActual": 85.0, "capacidadBateriaMaxima": 120.0, "estado": "EN_USO" },
@@ -6,7 +6,7 @@ let estadoSistema = {
       { "idVehiculo": "veh-0994", "idConductor": "cond-0994", "matricula": "1234-XYZ", "latitud": 40.3441, "longitud": -1.0898, "velocidad": 50.5, "nivelBateriaActual": 10.0, "capacidadBateriaMaxima": 120.0, "estado": "EN_USO" }
     ],
     listaPostes: [
-      { "idZona": "Z-ZGZ-01", "postesLibres": 5, "estado": "DISPONIBLE" }
+      { "idZona": "Z-TER-01", "postesLibres": 5, "estado": "DISPONIBLE" }
     ],
     notificacionesActivas: []
 };
@@ -44,11 +44,11 @@ const iniciarSimulacion = (redisPublisher) => {
         const zonaUpdate = {
           type: "ZONA_UPDATE",
           payload: {
-            idZona: "Z-ZGZ-01",
-            nombre: "Estación Delicias",
+            idZona: "Z-TER-01",
+            nombre: "Estación de Teruel",
             coordenadas: {
-              lat: 41.6488,
-              lng: -0.9101
+              lat: 40.3480,
+              lng: -1.0950
             },
             postesLibres: Math.floor(Math.random() * 5),
             capacidadTotal: 5,

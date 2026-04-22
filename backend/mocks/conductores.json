@@ -1,6 +1,6 @@
 {
   "POST:/api/conductores": {
-    "idConductor": "cond-2022",
+    "idConductor": "COND-7",
     "nombre": "Alberto",
     "email": "alberto@gmail.com",
     "password": "contraseña1234",
@@ -17,7 +17,7 @@
   },
   "/api/conductores/validate":
   {
-    "idConductor": "cond-2022",
+    "idConductor": "COND-7",
     "nombre": "Alberto",
     "email": "alberto@gmail.com",
     "password": "contraseña1234",

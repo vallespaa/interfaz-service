@@ -2,49 +2,49 @@
   "/api/postes": [
     {
       "idPoste": "P-01",
-      "idZona": "Z-ZGZ-01",
+      "idZona": "Z-TER-01",
       "estado": "LIBRE",
       "potenciaMax": 50.0,
       "idVehiculo": null
     },
     {
       "idPoste": "P-02",
-      "idZona": "Z-ZGZ-01",
+      "idZona": "Z-TER-01",
       "estado": "OCUPADO",
       "potenciaMax": 50.0,
       "idVehiculo": "veh-5502"
     },
     {
       "idPoste": "P-03",
-      "idZona": "Z-ZGZ-01",
+      "idZona": "Z-TER-01",
       "estado": "LIBRE",
       "potenciaMax": 22.0,
       "idVehiculo": null
     },
     {
       "idPoste": "P-04",
-      "idZona": "Z-ZGZ-01",
+      "idZona": "Z-TER-01",
       "estado": "RESERVADO",
       "potenciaMax": 22.0,
       "idVehiculo": "veh-5501"
     },
     {
       "idPoste": "P-05",
-      "idZona": "Z-ZGZ-01",
+      "idZona": "Z-TER-01",
       "estado": "LIBRE",
       "potenciaMax": 11.0,
       "idVehiculo": null
     },
     {
       "idPoste": "P-06",
-      "idZona": "Z-ZGZ-02",
+      "idZona": "Z-TER-02",
       "estado": "LIBRE",
       "potenciaMax": 50.0,
       "idVehiculo": null
     },
     {
       "idPoste": "P-07",
-      "idZona": "Z-ZGZ-02",
+      "idZona": "Z-TER-02",
       "estado": "MANTENIMIENTO",
       "potenciaMax": 50.0,
       "idVehiculo": null
@@ -52,66 +52,82 @@
   ],
   "/api/postes/P-01": {
     "idPoste": "P-01",
-    "idZona": "Z-ZGZ-01",
+    "idZona": "Z-TER-01",
     "estado": "LIBRE",
     "potenciaMax": 50.0,
     "idVehiculo": null
   },
   "/api/postes/P-04": {
     "idPoste": "P-04",
-    "idZona": "Z-ZGZ-01",
+    "idZona": "Z-TER-01",
     "estado": "RESERVADO",
     "potenciaMax": 22.0,
     "idVehiculo": "veh-5501"
   },
-  "/api/postes?idZona=Z-ZGZ-01": [
+  "/api/postes?idZona=Z-TER-01": [
     {
       "idPoste": "P-01",
-      "idZona": "Z-ZGZ-01",
+      "idZona": "Z-TER-01",
       "estado": "LIBRE",
       "potenciaMax": 50.0,
       "idVehiculo": null
     },
     {
       "idPoste": "P-02",
-      "idZona": "Z-ZGZ-01",
+      "idZona": "Z-TER-01",
       "estado": "OCUPADO",
       "potenciaMax": 50.0,
       "idVehiculo": "veh-5502"
     },
     {
       "idPoste": "P-03",
-      "idZona": "Z-ZGZ-01",
+      "idZona": "Z-TER-01",
       "estado": "LIBRE",
       "potenciaMax": 22.0,
       "idVehiculo": null
     },
     {
       "idPoste": "P-04",
-      "idZona": "Z-ZGZ-01",
+      "idZona": "Z-TE-01",
       "estado": "RESERVADO",
       "potenciaMax": 22.0,
       "idVehiculo": "veh-5501"
     },
     {
       "idPoste": "P-05",
-      "idZona": "Z-ZGZ-01",
+      "idZona": "Z-TER-01",
       "estado": "LIBRE",
       "potenciaMax": 11.0,
       "idVehiculo": null
     }
   ],
-  "/api/postes?idZona=Z-ZGZ-02": [
+  "/api/postes?idZona=Z-TER-02": [
     {
       "idPoste": "P-06",
-      "idZona": "Z-ZGZ-02",
+      "idZona": "Z-TER-02",
       "estado": "LIBRE",
       "potenciaMax": 50.0,
       "idVehiculo": null
     },
     {
       "idPoste": "P-07",
-      "idZona": "Z-ZGZ-02",
+      "idZona": "Z-TER-02",
+      "estado": "MANTENIMIENTO",
+      "potenciaMax": 50.0,
+      "idVehiculo": null
+    }
+  ],
+  "/api/postes?idZona=Z-TER-04": [
+    {
+      "idPoste": "P-06",
+      "idZona": "Z-TER-04",
+      "estado": "LIBRE",
+      "potenciaMax": 50.0,
+      "idVehiculo": null
+    },
+    {
+      "idPoste": "P-07",
+      "idZona": "Z-TER-04",
       "estado": "MANTENIMIENTO",
       "potenciaMax": 50.0,
       "idVehiculo": null

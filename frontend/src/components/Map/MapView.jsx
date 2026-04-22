@@ -6,7 +6,7 @@ import { useApp } from "../../context/AppContext";
 import { getZonasCercanas } from "../../api";
 import styles from "./MapView.module.css";
 
-const COORDENADAS = [41.6488, -0.8891];
+const COORDENADAS = [40.3436, -1.1062];
 
 // Fix default icon path issue in CRA
 delete L.Icon.Default.prototype._getIconUrl;
