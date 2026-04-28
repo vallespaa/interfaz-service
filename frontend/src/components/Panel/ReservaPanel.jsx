@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useApp } from "../../context/AppContext";
-import { cancelarReserva as apiCancelar } from "../../api";
+import { ApiError, cancelarReserva as apiCancelar, getDetalleVehiculo, getDetallePoste, iniciarSesionCarga } from "../../api";
 import styles from "./Panel.module.css";
 
 const ALERTA_EN = 2 * 60;         // alerta a los 2 minutos restantes
@@ -16,6 +16,8 @@ export default function ReservaPanel() {
   const [segs, setSegs] = useState(calcSegs);
   const [toast, setToast] = useState(false);
   const [cancelando, setCancelando] = useState(false);
+  const [cargando, setCargando] = useState(false);
+  const [error, setError] = useState("");
   const toastShown = useRef(false);
 
   useEffect(() => {
@@ -41,6 +43,38 @@ export default function ReservaPanel() {
     } finally {
       cancelarReserva();
     }
+  };
+
+  const handleCargar = async () => {
+    if (!reservaActiva) { setError("Realiza una reserva primero."); return; }
+
+    setError("");  setCargando(true);
+    try {
+      const [vehiculo, poste] = await Promise.all([
+        getDetalleVehiculo(reservaActiva.idVehiculo),
+        getDetallePoste(reservaActiva.idPoste)
+      ]);
+
+      // Valor de batería aleatorio para correcta simulación
+      const nivelFalso = Math.floor(Math.random() * (50 - 10 + 1)) + 10;
+
+      const datosSimulacion = {
+        cargadorId: poste.idPoste,
+        vehiculoId: vehiculo.idVehiculo,
+        socInicial: nivelFalso,
+        socObjetivo: 100.0,                         // Valor por defecto
+        capacidadBateriaKwh: vehiculo.capacidadBateriaMaxima,
+        potenciaMaxCargadorKw: poste.potenciaMax,
+        voltajeNominal: 400                        // Voltaje nominal por defecto
+      };
+
+      const nuevaCarga = await iniciarSesionCarga(datosSimulacion);
+      iniciarCarga(nuevaCarga); 
+      
+    } catch (err) {
+      setError(err.message || "Error al iniciar la simulación de carga");
+      setError(err instanceof ApiError ? err.message : "No se pudo iniciar la carga.");
+    } finally { setCargando(false); }
   };
 
   const mins = String(Math.floor(segs / 60)).padStart(2, "0");
@@ -85,9 +119,8 @@ export default function ReservaPanel() {
         {cancelando ? "Cancelando…" : "Cancelar reserva"}
       </button>
 
-      {/* Botón de prueba - simular inicio de carga */}
-      <button className={styles.btnSecondarySmall} onClick={() => iniciarCarga({ idCarga: "test-001" })}>
-        (DEV) Simular inicio de carga →
+      <button className={styles.btnSecondarySmall} onClick={handleCargar}>
+        Iniciar carga
       </button>
     </div>
   );

@@ -41,9 +41,10 @@ export default function ZonaDetalle() {
     setError(""); setReservando(true);
     try {
       const reserva = await crearReserva({
-        idZona: zonaSeleccionada.idZona,
-        idConductor: vehiculo.idConductor,
+        idPoste: posteSeleccionado.idPoste,
+        idUsuario: vehiculo.idConductor,
         idVehiculo: vehiculo.idVehiculo,
+        idZona: zonaSeleccionada.idZona
       });
 
       // TODO: Eliminar cuando microservicio de reservas esté activo
@@ -54,7 +55,11 @@ export default function ZonaDetalle() {
       const reservaMock = {
         ...reserva,
         fechaCreacion: ahora.toISOString(),
-        fechaExpiracion: expiracion.toISOString()
+        fechaExpiracion: expiracion.toISOString(),
+        idPoste: posteSeleccionado.idPoste,
+        idUsuario: vehiculo.idConductor,
+        idVehiculo: vehiculo.idVehiculo,
+        idZona: zonaSeleccionada.idZona
       };
 
       activarReserva(reservaMock);

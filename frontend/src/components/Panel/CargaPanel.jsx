@@ -1,13 +1,6 @@
-/**
- * @file CargaPanel.jsx
- * @author Diego Vallespín Blas
- * @date 2026-04
- * @description Panel de control de sesión de carga activa.
- */
-
 import { useState, useEffect, useRef } from "react";
 import { useApp } from "../../context/AppContext";
-import { getDetalleVehiculo } from "../../api";
+import { getDetalleVehiculo, detenerSesionCarga } from "../../api";
 import { useAuth } from "../../context/AuthContext";
 import styles from "./Panel.module.css";
 
@@ -78,8 +71,18 @@ export default function CargaPanel() {
   }, []);
 
   const handleFinalizar = async () => {
+    if (!cargaActiva?.id) {
+      console.error("No hay un ID de carga activo disponible");
+      return;
+    }
     setFin(true);
-    setTimeout(finalizarCarga, 1200);
+    try {
+      await detenerSesionCarga(cargaActiva.id);
+      finalizarCarga();
+    } catch (err) {
+      alert("No se pudo detener la carga en el servidor");
+      setFin(false);
+    }
   };
 
   return (
@@ -128,7 +131,8 @@ export default function CargaPanel() {
       </div>
 
       <div className={styles.reservaNote}>
-        Los datos se actualizan automáticamente cada 10 segundos.
+        ID Simulación: {cargaActiva?.id} <br/>
+        Datos reales del Motor de Simulación.
       </div>
 
       <button

@@ -1,8 +1,5 @@
 const BASE_URL = `http://${window.location.hostname}:8080/api`;
 
-// TODO: Ajustar getToken / setToken / removeToken según compañero
-// Por ahora se guarda en memoria para no tocarlo en localStorage hasta decidirlo.
-
 let _token = null;
 
 export const setToken = (token) => {
@@ -87,6 +84,13 @@ export const api = {
     request(endpoint, {
       ...options,
       method: "POST",
+      body: JSON.stringify(body),
+    }),
+
+  put: (endpoint, body = {}, options = {}) =>
+    request(endpoint, {
+      ...options,
+      method: "PUT",
       body: JSON.stringify(body),
     }),
 

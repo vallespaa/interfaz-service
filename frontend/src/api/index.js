@@ -11,3 +11,4 @@ export * from "./reservas";
 export * from "./vehiculos";
 export * from "./historico";
 export * from "./notificaciones";
+export * from "./cargas";

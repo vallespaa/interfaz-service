@@ -39,6 +39,17 @@ function createAdapter(serviceName, baseUrlEnv, mockPath = null) {
     return res.data;
   }
 
+  async function put(path, body = {}, token = null) {
+    if (useMock()) {
+      console.log(`[MOCK] ${serviceName} PUT ${path}`, body);
+      const mocks = require(mockPath);
+      return mocks[`PUT:${path}`] ?? { success: true, mock: true };
+    }
+    
+    const res = await client.put(path, body, { _token: token });
+    return res.data;
+  }
+
   async function patch(path, body = {}, token = null) {
     if (useMock()) {
       console.log(`[MOCK] ${serviceName} PATCH ${path}`, body);
@@ -59,7 +70,7 @@ function createAdapter(serviceName, baseUrlEnv, mockPath = null) {
     return res.data;
   }
 
-  return { get, post, patch, del };
+  return { get, post, put, patch, del };
 }
 
 module.exports = { createAdapter };
