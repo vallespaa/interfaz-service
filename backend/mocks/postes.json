@@ -4,49 +4,126 @@
       "idPoste": "P-01",
       "idZona": "Z-TER-01",
       "estado": "LIBRE",
-      "potenciaMax": 50.0,
+      "potenciaMax": 50,
       "idVehiculo": null
     },
     {
       "idPoste": "P-02",
       "idZona": "Z-TER-01",
       "estado": "OCUPADO",
-      "potenciaMax": 50.0,
+      "potenciaMax": 50,
       "idVehiculo": "veh-5502"
     },
     {
       "idPoste": "P-03",
       "idZona": "Z-TER-01",
       "estado": "LIBRE",
-      "potenciaMax": 22.0,
+      "potenciaMax": 22,
       "idVehiculo": null
     },
     {
       "idPoste": "P-04",
       "idZona": "Z-TER-01",
       "estado": "RESERVADO",
-      "potenciaMax": 22.0,
+      "potenciaMax": 22,
       "idVehiculo": "veh-5501"
     },
     {
       "idPoste": "P-05",
       "idZona": "Z-TER-01",
       "estado": "LIBRE",
-      "potenciaMax": 11.0,
+      "potenciaMax": 11,
       "idVehiculo": null
     },
     {
       "idPoste": "P-06",
       "idZona": "Z-TER-02",
       "estado": "LIBRE",
-      "potenciaMax": 50.0,
+      "potenciaMax": 50,
       "idVehiculo": null
     },
     {
       "idPoste": "P-07",
       "idZona": "Z-TER-02",
+      "estado": "OCUPADO",
+      "potenciaMax": 50,
+      "idVehiculo": "veh-5503"
+    },
+    {
+      "idPoste": "P-08",
+      "idZona": "Z-TER-02",
+      "estado": "OCUPADO",
+      "potenciaMax": 22,
+      "idVehiculo": "veh-5504"
+    },
+    {
+      "idPoste": "P-09",
+      "idZona": "Z-TER-02",
       "estado": "MANTENIMIENTO",
-      "potenciaMax": 50.0,
+      "potenciaMax": 22,
+      "idVehiculo": null
+    },
+    {
+      "idPoste": "P-10",
+      "idZona": "Z-TER-03",
+      "estado": "OCUPADO",
+      "potenciaMax": 50,
+      "idVehiculo": "veh-5505"
+    },
+    {
+      "idPoste": "P-11",
+      "idZona": "Z-TER-03",
+      "estado": "OCUPADO",
+      "potenciaMax": 22,
+      "idVehiculo": "veh-5506"
+    },
+    {
+      "idPoste": "P-12",
+      "idZona": "Z-TER-03",
+      "estado": "OCUPADO",
+      "potenciaMax": 11,
+      "idVehiculo": "veh-5507"
+    },
+    {
+      "idPoste": "P-13",
+      "idZona": "Z-TER-04",
+      "estado": "LIBRE",
+      "potenciaMax": 50,
+      "idVehiculo": null
+    },
+    {
+      "idPoste": "P-14",
+      "idZona": "Z-TER-04",
+      "estado": "OCUPADO",
+      "potenciaMax": 50,
+      "idVehiculo": "veh-5508"
+    },
+    {
+      "idPoste": "P-15",
+      "idZona": "Z-TER-04",
+      "estado": "OCUPADO",
+      "potenciaMax": 22,
+      "idVehiculo": "veh-5509"
+    },
+    {
+      "idPoste": "P-16",
+      "idZona": "Z-TER-04",
+      "estado": "OCUPADO",
+      "potenciaMax": 22,
+      "idVehiculo": "veh-5510"
+    },
+    {
+      "idPoste": "P-17",
+      "idZona": "Z-TER-04",
+      "estado": "LIBRE",
+      "potenciaMax": 11,
+      "idVehiculo": null
+    },
+    {
+      "idPoste": "P-18",
+      "idZona": "Z-TER-04",
+      "estado": "MANTENIMIENTO",
+      "potenciaMax": 11,
       "idVehiculo": null
     }
   ],
@@ -54,50 +131,162 @@
     "idPoste": "P-01",
     "idZona": "Z-TER-01",
     "estado": "LIBRE",
-    "potenciaMax": 50.0,
+    "potenciaMax": 50,
+    "idVehiculo": null
+  },
+  "/api/postes/P-02": {
+    "idPoste": "P-02",
+    "idZona": "Z-TER-01",
+    "estado": "OCUPADO",
+    "potenciaMax": 50,
+    "idVehiculo": "veh-5502"
+  },
+  "/api/postes/P-03": {
+    "idPoste": "P-03",
+    "idZona": "Z-TER-01",
+    "estado": "LIBRE",
+    "potenciaMax": 22,
     "idVehiculo": null
   },
   "/api/postes/P-04": {
     "idPoste": "P-04",
     "idZona": "Z-TER-01",
     "estado": "RESERVADO",
-    "potenciaMax": 22.0,
+    "potenciaMax": 22,
     "idVehiculo": "veh-5501"
+  },
+  "/api/postes/P-05": {
+    "idPoste": "P-05",
+    "idZona": "Z-TER-01",
+    "estado": "LIBRE",
+    "potenciaMax": 11,
+    "idVehiculo": null
+  },
+  "/api/postes/P-06": {
+    "idPoste": "P-06",
+    "idZona": "Z-TER-02",
+    "estado": "LIBRE",
+    "potenciaMax": 50,
+    "idVehiculo": null
+  },
+  "/api/postes/P-07": {
+    "idPoste": "P-07",
+    "idZona": "Z-TER-02",
+    "estado": "OCUPADO",
+    "potenciaMax": 50,
+    "idVehiculo": "veh-5503"
+  },
+  "/api/postes/P-08": {
+    "idPoste": "P-08",
+    "idZona": "Z-TER-02",
+    "estado": "OCUPADO",
+    "potenciaMax": 22,
+    "idVehiculo": "veh-5504"
+  },
+  "/api/postes/P-09": {
+    "idPoste": "P-09",
+    "idZona": "Z-TER-02",
+    "estado": "MANTENIMIENTO",
+    "potenciaMax": 22,
+    "idVehiculo": null
+  },
+  "/api/postes/P-10": {
+    "idPoste": "P-10",
+    "idZona": "Z-TER-03",
+    "estado": "OCUPADO",
+    "potenciaMax": 50,
+    "idVehiculo": "veh-5505"
+  },
+  "/api/postes/P-11": {
+    "idPoste": "P-11",
+    "idZona": "Z-TER-03",
+    "estado": "OCUPADO",
+    "potenciaMax": 22,
+    "idVehiculo": "veh-5506"
+  },
+  "/api/postes/P-12": {
+    "idPoste": "P-12",
+    "idZona": "Z-TER-03",
+    "estado": "OCUPADO",
+    "potenciaMax": 11,
+    "idVehiculo": "veh-5507"
+  },
+  "/api/postes/P-13": {
+    "idPoste": "P-13",
+    "idZona": "Z-TER-04",
+    "estado": "LIBRE",
+    "potenciaMax": 50,
+    "idVehiculo": null
+  },
+  "/api/postes/P-14": {
+    "idPoste": "P-14",
+    "idZona": "Z-TER-04",
+    "estado": "OCUPADO",
+    "potenciaMax": 50,
+    "idVehiculo": "veh-5508"
+  },
+  "/api/postes/P-15": {
+    "idPoste": "P-15",
+    "idZona": "Z-TER-04",
+    "estado": "OCUPADO",
+    "potenciaMax": 22,
+    "idVehiculo": "veh-5509"
+  },
+  "/api/postes/P-16": {
+    "idPoste": "P-16",
+    "idZona": "Z-TER-04",
+    "estado": "OCUPADO",
+    "potenciaMax": 22,
+    "idVehiculo": "veh-5510"
+  },
+  "/api/postes/P-17": {
+    "idPoste": "P-17",
+    "idZona": "Z-TER-04",
+    "estado": "LIBRE",
+    "potenciaMax": 11,
+    "idVehiculo": null
+  },
+  "/api/postes/P-18": {
+    "idPoste": "P-18",
+    "idZona": "Z-TER-04",
+    "estado": "MANTENIMIENTO",
+    "potenciaMax": 11,
+    "idVehiculo": null
   },
   "/api/postes?idZona=Z-TER-01": [
     {
       "idPoste": "P-01",
       "idZona": "Z-TER-01",
       "estado": "LIBRE",
-      "potenciaMax": 50.0,
+      "potenciaMax": 50,
       "idVehiculo": null
     },
     {
       "idPoste": "P-02",
       "idZona": "Z-TER-01",
       "estado": "OCUPADO",
-      "potenciaMax": 50.0,
+      "potenciaMax": 50,
       "idVehiculo": "veh-5502"
     },
     {
       "idPoste": "P-03",
       "idZona": "Z-TER-01",
       "estado": "LIBRE",
-      "potenciaMax": 22.0,
+      "potenciaMax": 22,
       "idVehiculo": null
     },
     {
       "idPoste": "P-04",
-      "idZona": "Z-TE-01",
+      "idZona": "Z-TER-01",
       "estado": "RESERVADO",
-      "potenciaMax": 22.0,
+      "potenciaMax": 22,
       "idVehiculo": "veh-5501"
     },
     {
       "idPoste": "P-05",
       "idZona": "Z-TER-01",
       "estado": "LIBRE",
-      "potenciaMax": 11.0,
+      "potenciaMax": 11,
       "idVehiculo": null
     }
   ],
@@ -106,31 +295,114 @@
       "idPoste": "P-06",
       "idZona": "Z-TER-02",
       "estado": "LIBRE",
-      "potenciaMax": 50.0,
+      "potenciaMax": 50,
       "idVehiculo": null
     },
     {
       "idPoste": "P-07",
       "idZona": "Z-TER-02",
+      "estado": "OCUPADO",
+      "potenciaMax": 50,
+      "idVehiculo": "veh-5503"
+    },
+    {
+      "idPoste": "P-08",
+      "idZona": "Z-TER-02",
+      "estado": "OCUPADO",
+      "potenciaMax": 22,
+      "idVehiculo": "veh-5504"
+    },
+    {
+      "idPoste": "P-09",
+      "idZona": "Z-TER-02",
       "estado": "MANTENIMIENTO",
-      "potenciaMax": 50.0,
+      "potenciaMax": 22,
       "idVehiculo": null
+    }
+  ],
+  "/api/postes?idZona=Z-TER-03": [
+    {
+      "idPoste": "P-10",
+      "idZona": "Z-TER-03",
+      "estado": "OCUPADO",
+      "potenciaMax": 50,
+      "idVehiculo": "veh-5505"
+    },
+    {
+      "idPoste": "P-11",
+      "idZona": "Z-TER-03",
+      "estado": "OCUPADO",
+      "potenciaMax": 22,
+      "idVehiculo": "veh-5506"
+    },
+    {
+      "idPoste": "P-12",
+      "idZona": "Z-TER-03",
+      "estado": "OCUPADO",
+      "potenciaMax": 11,
+      "idVehiculo": "veh-5507"
     }
   ],
   "/api/postes?idZona=Z-TER-04": [
     {
-      "idPoste": "P-06",
+      "idPoste": "P-13",
       "idZona": "Z-TER-04",
       "estado": "LIBRE",
-      "potenciaMax": 50.0,
+      "potenciaMax": 50,
       "idVehiculo": null
     },
     {
-      "idPoste": "P-07",
+      "idPoste": "P-14",
+      "idZona": "Z-TER-04",
+      "estado": "OCUPADO",
+      "potenciaMax": 50,
+      "idVehiculo": "veh-5508"
+    },
+    {
+      "idPoste": "P-15",
+      "idZona": "Z-TER-04",
+      "estado": "OCUPADO",
+      "potenciaMax": 22,
+      "idVehiculo": "veh-5509"
+    },
+    {
+      "idPoste": "P-16",
+      "idZona": "Z-TER-04",
+      "estado": "OCUPADO",
+      "potenciaMax": 22,
+      "idVehiculo": "veh-5510"
+    },
+    {
+      "idPoste": "P-17",
+      "idZona": "Z-TER-04",
+      "estado": "LIBRE",
+      "potenciaMax": 11,
+      "idVehiculo": null
+    },
+    {
+      "idPoste": "P-18",
       "idZona": "Z-TER-04",
       "estado": "MANTENIMIENTO",
-      "potenciaMax": 50.0,
+      "potenciaMax": 11,
       "idVehiculo": null
     }
-  ]
+  ],
+  "POST:/api/reservas": {
+    "idReserva": "RES-mock-0001",
+    "idZona": "Z-TER-01",
+    "idPoste": "P-03",
+    "idVehiculo": "veh-5501",
+    "idUsuario": "COND-7",
+    "estado": "PENDIENTE",
+    "fechaCreacion": "2026-03-22T10:00:00Z",
+    "fechaExpiracion": "2026-03-22T10:15:00Z",
+    "precioPorKWh": 0.32,
+    "tipoTarifa": "ESTANDAR",
+    "notificacionPreventivaEnviada": false
+  },
+  "DELETE:/api/reservas/RES-mock-0001": {
+    "mensaje": "Reserva cancelada correctamente",
+    "idReserva": "RES-mock-0001",
+    "estado": "CANCELADA"
+  }
 }

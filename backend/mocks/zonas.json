@@ -3,7 +3,10 @@
     {
       "idZona": "Z-TER-01",
       "nombre": "Estación de Teruel",
-      "coordenadas": { "lat": 40.3392, "lng": -1.1118 },
+      "coordenadas": {
+        "lat": 40.3409,
+        "lng": -1.1103
+      },
       "postesLibres": 3,
       "capacidadTotal": 5,
       "precioPorKWh": 0.32,
@@ -13,7 +16,10 @@
     {
       "idZona": "Z-TER-02",
       "nombre": "Plaza del Torico",
-      "coordenadas": { "lat": 40.3426, "lng": -1.1068 },
+      "coordenadas": {
+        "lat": 40.3426,
+        "lng": -1.1068
+      },
       "postesLibres": 1,
       "capacidadTotal": 4,
       "precioPorKWh": 0.45,
@@ -23,7 +29,10 @@
     {
       "idZona": "Z-TER-03",
       "nombre": "Plaza de Toros",
-      "coordenadas": { "lat": 40.3346, "lng": -1.1032 },
+      "coordenadas": {
+        "lat": 40.3346,
+        "lng": -1.1032
+      },
       "postesLibres": 0,
       "capacidadTotal": 3,
       "precioPorKWh": 0.29,
@@ -33,7 +42,10 @@
     {
       "idZona": "Z-TER-04",
       "nombre": "Universidad",
-      "coordenadas": { "lat": 40.3495, "lng": -1.1035 },
+      "coordenadas": {
+        "lat": 40.3518,
+        "lng": -1.1092
+      },
       "postesLibres": 2,
       "capacidadTotal": 6,
       "precioPorKWh": 0.29,
@@ -45,7 +57,10 @@
     {
       "idZona": "Z-TER-01",
       "nombre": "Estación de Teruel",
-      "coordenadas": { "lat": 40.3392, "lng": -1.1118 },
+      "coordenadas": {
+        "lat": 40.3409,
+        "lng": -1.1103
+      },
       "postesLibres": 3,
       "capacidadTotal": 5,
       "precioPorKWh": 0.32,
@@ -55,7 +70,10 @@
     {
       "idZona": "Z-TER-02",
       "nombre": "Plaza del Torico",
-      "coordenadas": { "lat": 40.3426, "lng": -1.1068 },
+      "coordenadas": {
+        "lat": 40.3426,
+        "lng": -1.1068
+      },
       "postesLibres": 1,
       "capacidadTotal": 4,
       "precioPorKWh": 0.45,
@@ -63,9 +81,25 @@
       "estado": "HABILITADA"
     },
     {
+      "idZona": "Z-TER-03",
+      "nombre": "Plaza de Toros",
+      "coordenadas": {
+        "lat": 40.3346,
+        "lng": -1.1032
+      },
+      "postesLibres": 0,
+      "capacidadTotal": 3,
+      "precioPorKWh": 0.29,
+      "tipoTarifa": "ESTANDAR",
+      "estado": "HABILITADA"
+    },
+    {
       "idZona": "Z-TER-04",
       "nombre": "Universidad",
-      "coordenadas": { "lat": 40.3495, "lng": -1.1035 },
+      "coordenadas": {
+        "lat": 40.3518,
+        "lng": -1.1092
+      },
       "postesLibres": 2,
       "capacidadTotal": 6,
       "precioPorKWh": 0.29,
@@ -76,32 +110,87 @@
   "/api/zonas/Z-TER-01": {
     "idZona": "Z-TER-01",
     "nombre": "Estación de Teruel",
-    "coordenadas": { "lat": 40.3346, "lng": -1.1022 },
+    "coordenadas": {
+      "lat": 40.3409,
+      "lng": -1.1103
+    },
     "postesLibres": 3,
     "capacidadTotal": 5,
-    "idsPostes": ["P-01", "P-02", "P-03", "P-04", "P-05"],
+    "idsPostes": [
+      "P-01",
+      "P-02",
+      "P-03",
+      "P-04",
+      "P-05"
+    ],
     "precioPorKWh": 0.32,
     "tipoTarifa": "ESTANDAR",
     "estado": "HABILITADA",
     "porcentajeOcupacion": 40,
     "fechaUltimaModificacion": "2026-03-01T10:00:00Z"
   },
-  "POST:/api/reservas": {
-    "idReserva": "RES-mock-0001",
-    "idZona": "Z-TER-01",
-    "idPoste": "P-03",
-    "idVehiculo": "veh-5501",
-    "idUsuario": "COND-7",
-    "estado": "PENDIENTE",
-    "fechaCreacion": "2026-03-22T10:00:00Z",
-    "fechaExpiracion": "2026-03-22T10:15:00Z",
-    "precioPorKWh": 0.32,
-    "tipoTarifa": "ESTANDAR",
-    "notificacionPreventivaEnviada": false
+  "/api/zonas/Z-TER-02": {
+    "idZona": "Z-TER-02",
+    "nombre": "Plaza del Torico",
+    "coordenadas": {
+      "lat": 40.3426,
+      "lng": -1.1068
+    },
+    "postesLibres": 1,
+    "capacidadTotal": 4,
+    "idsPostes": [
+      "P-06",
+      "P-07",
+      "P-08",
+      "P-09"
+    ],
+    "precioPorKWh": 0.45,
+    "tipoTarifa": "PREMIUM",
+    "estado": "HABILITADA",
+    "porcentajeOcupacion": 75,
+    "fechaUltimaModificacion": "2026-03-02T14:30:00Z"
   },
-  "DELETE:/api/reservas/RES-mock-0001": {
-    "mensaje": "Reserva cancelada correctamente",
-    "idReserva": "RES-mock-0001",
-    "estado": "CANCELADA"
+  "/api/zonas/Z-TER-03": {
+    "idZona": "Z-TER-03",
+    "nombre": "Plaza de Toros",
+    "coordenadas": {
+      "lat": 40.3346,
+      "lng": -1.1032
+    },
+    "postesLibres": 0,
+    "capacidadTotal": 3,
+    "idsPostes": [
+      "P-10",
+      "P-11",
+      "P-12"
+    ],
+    "precioPorKWh": 0.29,
+    "tipoTarifa": "ESTANDAR",
+    "estado": "HABILITADA",
+    "porcentajeOcupacion": 100,
+    "fechaUltimaModificacion": "2026-03-03T09:15:00Z"
+  },
+  "/api/zonas/Z-TER-04": {
+    "idZona": "Z-TER-04",
+    "nombre": "Universidad",
+    "coordenadas": {
+      "lat": 40.3518,
+      "lng": -1.1092
+    },
+    "postesLibres": 2,
+    "capacidadTotal": 6,
+    "idsPostes": [
+      "P-13",
+      "P-14",
+      "P-15",
+      "P-16",
+      "P-17",
+      "P-18"
+    ],
+    "precioPorKWh": 0.29,
+    "tipoTarifa": "ESTANDAR",
+    "estado": "HABILITADA",
+    "porcentajeOcupacion": 67,
+    "fechaUltimaModificacion": "2026-03-02T11:45:00Z"
   }
 }
