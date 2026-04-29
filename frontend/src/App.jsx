@@ -1,11 +1,21 @@
+import { useEffect } from "react";
 import { useAuth, AuthProvider } from "./context/AuthContext";
 import { AppProvider } from "./context/AppContext";
+import { conectarWS, desconectarWS } from "./services/wsClient";
 import AuthPage from "./components/Auth/AuthPage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import "./styles/global.css";
 
 function AppInner() {
   const { conductor, loading } = useAuth();
+
+  useEffect(() => {
+    if (conductor?.idConductor) {
+      conectarWS();
+    } else {
+      desconectarWS();
+    }
+  }, [conductor?.idConductor]);
 
   if (loading) {
     return (

@@ -7,7 +7,6 @@ const { subClient, pubClient } = require('./config/redis');
 const conectarDB = require('./config/db');
 const { iniciarWebSocket } = require('./services/websocket');
 const { iniciarSuscripciones } = require('./services/redisSubscriber');
-const { estadoSistema, iniciarSimulacion } = require('./mockData');
 
 // RUTAS
 const favoritosRoutes = require('./routes/favoritos');
@@ -46,11 +45,6 @@ app.use('/api/notificaciones', notificacionesRoutes);
 app.use('/api/cuentas', cuentasRoutes);
 app.use('/api/log-vehiculos', logVehiculosRoutes);
 
-app.get('/api/iu/estado', (req, res) => {
-  console.log("Petición de estado recibida");
-  res.status(200).json(estadoSistema); 
-});
-
 // Configuración HTTP + WebSocket
 const httpServer = createServer(app);
 iniciarWebSocket(httpServer);
@@ -65,12 +59,10 @@ async function start() {
     await pubClient.connect();
     console.log("Conectado a Redis. Publicador y Suscriptor listos.");
 
-    iniciarSimulacion(pubClient);
     await iniciarSuscripciones(subClient);
     
     httpServer.listen(PORT, () => {
       console.log(`Servidor corriendo en http://localhost:${PORT}`);
-      console.log(`Ruta GET /api/iu/estado en http://localhost:${PORT}/api/iu/estado`);
       console.log(`Ruta GET /api/iu/favoritos en http://localhost:${PORT}/api/iu/favoritos`);
     }); 
   } catch (err) {

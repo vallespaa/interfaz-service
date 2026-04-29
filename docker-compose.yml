@@ -1,12 +1,4 @@
 services:
-  redis-mock:
-    image: redis:alpine
-    container_name: redis_pruebas
-    ports:
-      - "6379:6379"
-    networks:
-      - fleet-network
-
   mongo:
     image: mongo:4.4
     container_name: mongo_iu
@@ -20,7 +12,6 @@ services:
   backend:
     build: ./backend
     depends_on:
-      - redis-mock
       - mongo
     env_file:
       - ./backend/.env
