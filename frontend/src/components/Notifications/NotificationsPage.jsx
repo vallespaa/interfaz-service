@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useApp } from "../../context/AppContext";
 import { getNotificaciones, ackNotificacion, resolverNotificacion } from "../../api";
+import { suscribir, desuscribir } from "../../services/wsClient";
 import styles from "./Notifications.module.css";
 
 const SEV_COLOR = {
@@ -35,6 +36,24 @@ export default function NotificationsPage() {
   };
 
   useEffect(() => { load(); }, []);
+
+  useEffect(() => {
+    const canal = "notifications-service/eventos";
+
+    const handleNuevaNotif = (mensaje) => {
+      const nuevaNotif = mensaje.datos;
+      if (!nuevaNotif || !nuevaNotif.idNotificacion) return;
+
+      setNotifs(prev => {
+        if (prev.some(n => n.idNotificacion === nuevaNotif.idNotificacion)) return prev;
+        setNotifCount(c => c + 1);
+        return [notif.datos, ...prev];
+      });
+    };
+
+    suscribir(canal, handleNuevaNotif);
+    return () => desuscribir(canal, handleNuevaNotif);
+  }, []);
 
   const handleAck = async (id) => {
     await ackNotificacion(id).catch(() => {});

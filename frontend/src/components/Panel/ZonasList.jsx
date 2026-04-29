@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useApp } from "../../context/AppContext";
 import { getZonasCercanas, getFavoritos, crearFavorito, eliminarFavorito } from "../../api";
+import { suscribir, desuscribir } from "../../services/wsClient";
 import styles from "./Panel.module.css";
 
 export default function ZonasList() {
@@ -24,6 +25,37 @@ export default function ZonasList() {
       })
       .catch((error) => console.error("Error al cargar zonas o favoritos:", error))
       .finally(() => setLoading(false));
+  }, []);
+
+  useEffect(() => {
+    const canal = "iumaestro:favoritos";
+
+    const handleFavoritoExterno = (mensaje) => {
+      const { datos, tipo } = mensaje;
+      const { idFavorito, idZona } = datos || {};
+
+      if (!idZona) return;
+
+      setFavoritosMap(prev => {
+        const nuevoMapa = { ...prev };
+
+        if (tipo === "FAVORITO_CREADO") {
+          if (!nuevoMapa[idZona]) {
+            nuevoMapa[idZona] = idFavorito;
+          }
+        } 
+        else if (tipo === "FAVORITO_ELIMINADO") {
+          if (nuevoMapa[idZona]) {
+            delete nuevoMapa[idZona];
+          }
+        }
+
+        return nuevoMapa;
+      });
+    };
+
+    suscribir(canal, handleFavoritoExterno);
+    return () => desuscribir(canal, handleFavoritoExterno);
   }, []);
 
   const toggleFavorito = useCallback(async (e, zona) => {
@@ -51,7 +83,6 @@ export default function ZonasList() {
       }
     }
   }, [favoritosMap]);
-
 
   return (
     <div className={styles.section}>

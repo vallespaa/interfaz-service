@@ -3,7 +3,8 @@ const { broadcast } = require('./websocket');
 const canales = [
   process.env.CANAL_MOTORSIMULACION,
   process.env.CANAL_VEHICULOS,
-  process.env.CANAL_IUMAESTRO
+  process.env.CANAL_NOTIFICACIONES,
+  process.env.CANAL_IUMAESTRO,
 ];
 
 const iniciarSuscripciones = async (subClient) => {
