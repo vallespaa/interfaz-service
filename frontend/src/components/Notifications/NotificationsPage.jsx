@@ -47,7 +47,7 @@ export default function NotificationsPage() {
       setNotifs(prev => {
         if (prev.some(n => n.idNotificacion === nuevaNotif.idNotificacion)) return prev;
         setNotifCount(c => c + 1);
-        return [notif.datos, ...prev];
+        return [nuevaNotif, ...prev];
       });
     };
 

@@ -2,7 +2,7 @@
   "/api/cuentas/conductor/COND-7": {
     "idCuenta": "acc-2023-55",
     "idConductor": "COND-7",
-    "iban": "****5678",
+    "iban": "123412341234****5678",
     "saldoPendiente": 27.00,
     "moneda": "EUR",
     "fechaCreacion": "2026-01-15T09:00:00Z"
