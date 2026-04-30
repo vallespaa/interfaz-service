@@ -1,70 +1,151 @@
-# Getting Started with Create React App
+﻿# Frontend — Aplicación React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Single Page Application para conductores de vehículos eléctricos. Presenta el ecosistema de carga en un mapa interactivo y gestiona reservas, sesiones de carga, notificaciones y perfil.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Descripción general
 
-### `npm start`
+El frontend es una SPA construida con **React** y Create React App. Se comunica exclusivamente con el backend API Gateway (`http://{host}:8080/api`) y no accede directamente a ningún microservicio externo.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+La navegación principal se organiza en cuatro áreas: **mapa**, **notificaciones**, **historial** y **perfil**. El panel derecho del mapa es contextual y cambia según el estado de la sesión del conductor (lista de zonas → detalle de zona → reserva activa → carga activa).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Stack tecnológico
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Librería | Uso |
+|---|---|
+| React (CRA) | Framework de UI |
+| React Context API | Estado global (sesión y navegación) |
+| React-Leaflet + Leaflet | Mapa interactivo |
+| fetch API | Comunicación HTTP centralizada |
+| ws | Cliente WebSocket (preparado para tiempo real) |
+| React Testing Library + Jest | Tests de componentes |
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Estructura de carpetas
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+src/
+├── App.jsx                  # Punto de entrada; inicializa providers
+├── index.js                 # Arranque de la app
+│
+├── context/
+│   ├── AuthContext.jsx      # Sesión, token JWT y datos del conductor
+│   └── AppContext.jsx       # Modo del panel, zona seleccionada, reserva activa
+│
+├── api/
+│   ├── apiClient.js         # Cliente HTTP centralizado (token, base URL)
+│   └── *.js                 # Wrappers por dominio: zonas, postes, reservas...
+│
+├── services/
+│   └── wsClient.js          # Cliente WebSocket
+│
+├── components/
+│   ├── Auth/                # Pantallas de login y registro
+│   ├── Dashboard/           # Layout principal y navegación
+│   ├── Map/                 # Mapa interactivo con zonas de carga
+│   ├── Panel/               # Panel derecho contextual
+│   │   ├── ZonasList.jsx    # Listado de zonas cercanas
+│   │   ├── ZonaDetalle.jsx  # Detalle de zona y selección de poste
+│   │   ├── ReservaPanel.jsx # Cuenta atrás de reserva
+│   │   └── CargaPanel.jsx   # Telemetría de carga activa
+│   ├── Notifications/       # Centro de notificaciones
+│   └── Profile/             # Perfil, vehículos y cuenta bancaria
+│
+└── styles/                  # Estilos globales
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Configuración
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+El frontend **no requiere fichero `.env`** en su configuración actual. La URL base de la API se determina dinámicamente en `src/api/apiClient.js`:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```js
+const BASE_URL = `http://${window.location.hostname}:8080/api`;
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Esto hace que siempre apunte al mismo host del navegador en el puerto `8080`, lo cual funciona tanto en local como en cualquier entorno de despliegue sin necesidad de reconfigurar.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Flujo principal de la aplicación
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+App.jsx
+  └── AuthProvider + AppProvider
+        ├── [Sin sesión] → AuthPage (login / registro)
+        └── [Con sesión] → Dashboard
+              ├── MapView          ← mapa + zonas en tiempo real
+              ├── RightPanel       ← panel contextual
+              │     ├── ZonasList
+              │     ├── ZonaDetalle
+              │     ├── ReservaPanel
+              │     └── CargaPanel
+              ├── NotificationsPage
+              └── ProfilePage
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Autenticación
 
-### Code Splitting
+1. El conductor introduce email y contraseña en `AuthPage`.
+2. La llamada a `POST /api/conductores/login` devuelve un JWT.
+3. El token se guarda en `sessionStorage` bajo la clave `ev_token`.
+4. `apiClient.js` lo incluye automáticamente en el header `Authorization: Bearer` de todas las peticiones.
+5. Al recargar la página, `AuthContext` valida el token con `GET /api/conductores/validate` antes de mostrar la aplicación.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Panel contextual (flujo de carga)
 
-### Analyzing the Bundle Size
+| Estado | Componente activo | Qué hace |
+|---|---|---|
+| Inicio | `ZonasList` | Muestra zonas cercanas ordenadas por distancia |
+| Zona seleccionada | `ZonaDetalle` | Postes disponibles, tarifas y selección |
+| Reserva creada | `ReservaPanel` | Cuenta atrás de 15 min, cancelación y arranque de carga |
+| Carga en curso | `CargaPanel` | Telemetría: batería, kWh, potencia y coste acumulado |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Componentes clave
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### `AuthContext.jsx`
+Gestiona el ciclo de vida de la sesión. Expone `login()`, `logout()` y los datos del conductor autenticado. Valida el token al montar la aplicación.
 
-### Advanced Configuration
+### `AppContext.jsx`
+Controla la navegación interna del panel derecho (`panelMode`), la zona seleccionada y la reserva activa. Centraliza las acciones de UI para evitar prop drilling.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### `MapView.jsx`
+Renderiza el mapa con `react-leaflet`. Carga las zonas cercanas al montar, usa geocodificación de OpenStreetMap para búsqueda por nombre, y pinta marcadores con color según disponibilidad (verde / naranja / rojo). Permite marcar zonas como favoritas.
 
-### Deployment
+### `CargaPanel.jsx`
+Simula la telemetría de carga actualizando estado de batería, kWh entregados y coste cada 10 segundos. Está preparado para recibir estos datos via WebSocket cuando el microservicio de cargas lo soporte.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### `ReservaPanel.jsx`
+Cuenta atrás de 15 minutos. Llama a `cancelarReserva()` automáticamente si el tiempo expira. Permite cancelar manualmente o iniciar la carga.
 
-### `npm run build` fails to minify
+### `NotificationsPage.jsx`
+Lista notificaciones del conductor (postes averiados, batería baja...). Actualiza el badge de no leídas en el contexto global. Permite marcar como vista (`/ack`) o resolver (`/resolver`).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### `ProfilePage.jsx`
+Muestra datos personales, vehículos asociados, saldo de cuenta e IBAN. Incluye el historial de movimientos bancarios del Cuenta Service y el cierre mensual automático.
+
+---
+
+## Ejecución local
+
+Con Docker Compose desde la raíz del proyecto (recomendado):
+
+```bash
+docker-compose up --build
+```
+
+El frontend queda disponible en `http://localhost:3000`.
+
+---
+
+## Limitaciones y trabajo futuro
+
+- La telemetría de `CargaPanel` es actualmente local (simula datos en el cliente). Está preparada para reemplazarse por eventos WebSocket reales cuando el Cargas Service los emita.
+- La cuenta atrás de `ReservaPanel` funciona en el cliente; idealmente debería estar dirigida por el servidor para garantizar consistencia.
