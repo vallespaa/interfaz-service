@@ -124,16 +124,16 @@ CANAL_NOTIFICACIONES=notifications-service/eventos
 CANAL_IUMAESTRO=iumaestro:favoritos
 
 # URLs de microservicios externos
-CONDUCTOR_SERVICE_URL=http://conductor-service:puerto
-VEHICULOS_SERVICE_URL=http://vehiculos-service:puerto
-ZONAS_SERVICE_URL=http://zonas-service:puerto
-POSTES_SERVICE_URL=http://postes-service:puerto
-RESERVAS_SERVICE_URL=http://reservas-service:puerto
-CARGAS_SERVICE_URL=http://cargas-service:puerto
-HISTORICO_SERVICE_URL=http://historico-service:puerto
-NOTIFICACIONES_SERVICE_URL=http://notificaciones-service:puerto
-CUENTAS_SERVICE_URL=http://cuentas-service:puerto
-LOG_VEHICULOS_SERVICE_URL=http://log-vehiculos-service:puerto
+CONDUCTOR_URL=http://conductor-service:puerto
+VEHICULOS_URL=http://vehiculos-service:puerto
+ZONAS_URL=http://zonas-service:puerto
+POSTES_URL=http://postes-service:puerto
+RESERVAS_URL=http://reservas-service:puerto
+CARGAS_URL=http://cargas-service:puerto
+HISTORICO_URL=http://historico-service:puerto
+NOTIFICACIONES_URL=http://notificaciones-service:puerto
+CUENTAS_URL=http://cuentas-service:puerto
+LOG_VEHICULOS_URL=http://log-vehiculos-service:puerto
 
 # Activar mocks (true = usa datos simulados en lugar del servicio real)
 USE_MOCK_CONDUCTOR=false
