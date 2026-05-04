@@ -160,7 +160,6 @@ Esto arranca automáticamente:
 - El **backend** en `http://localhost:8080`
 - El **frontend** en `http://localhost:3000`
 - Una instancia de **MongoDB** para los favoritos
-- Una instancia de **Redis** para el Pub/Sub
 
 ### 3. Acceder a la aplicación
 
