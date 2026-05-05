@@ -180,6 +180,30 @@ Abre `http://localhost:3000` en el navegador, regístrate con un correo y contra
 
 ---
 
+## 📸 Capturas de pantalla
+
+### Mapa de estaciones
+![Mapa de zonas de carga](docs/screenshots/mapa.png)
+*Localización de puntos de carga en tiempo real. Los pines indican disponibilidad: verde (>50%), naranja (<50%) y rojo (completo).*
+
+### Monitor de carga activa
+![Monitor de carga activa](docs/screenshots/carga-activa.png)
+*Telemetría en tiempo real durante la sesión: batería, energía consumida y coste acumulado.*
+
+### Historial de cargas
+![Historial de cargas](docs/screenshots/historial.png)
+*KPIs agregados y registro inmutable de sesiones pasadas con desglose completo de cada recibo.*
+
+### Centro de notificaciones
+![Centro de notificaciones](docs/screenshots/notificaciones.png)
+*Alertas en tiempo real: expiración de reservas, averías técnicas y filtrado por estado.*
+
+### Perfil y cuenta
+![Perfil y gestión de cuenta](docs/screenshots/perfil.png)
+*Gestión de vehículos, IBAN, saldo pendiente y datos personales del conductor.*
+
+---
+
 ## 🛠️ Stack tecnológico
 
 | Capa | Tecnología |
